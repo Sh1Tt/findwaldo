@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>findwaldo/</title>
+	<link rel="stylesheet" href="globals.css" />
+</head>
+<body>
+	<nav>
+		<div>
+			<h2>findwaldo/</h2>
+		</div>
+		<div>
+
+		</div>
+	</nav>
+	<header class="">
+		<h1 class="container flex">findwaldo/</h1>
+		<div>
+			<div>
+				<h2></h2>
+			</div>
+			<div>
+				<h2></h2>
+			</div>
+		</div>
+		<div>
+			<div id="legenda" class="container flex wrap">
+				<div class="ranking">
+					<h6 class="--orange">BeezKneez</h6>
+					<span>🔥</span>
+				</div>
+				<div class="ranking">
+					<h6 class="--deeppink">KindaHot</h6>
+					<span>😍</span>
+				</div>
+				<div class="ranking">
+					<h6 class="--blue">HollaAtYa</h6>
+					<span>🤝</span>
+				</div>
+			</div>
+			<div class="container flex">
+				<input type="text">
+				<input type="button" value="search">
+			</div>
+		</div>
+	</header>
+	<main>
+		<div class="container flex wrap" id="slds" data-stdout="tlds">
+			
+			
+		</div>
+	</main>
+	<aside></aside>
+	<footer></footer>
+	<script>
+		(async () =>{
+			const data = fetch("https://donna.hsd.services/findwaldo/v1/list?x-api-key=Sxh90-8s00Y-D98dy-9jdpd")
+			.then(res=>res.json())
+			.then(data=>{
+				const tlds = data.documents;
+				tlds.forEach((doc,index)=>{
+					const tld = doc.tld;
+					const watchers = doc.watchers;
+					document.querySelector(`[data-stdout="tlds"]`).innerHTML += `
+						<div key="${index}" id="wrapper-${index}" class="container flex wrapper">
+							<div id="card-${index}" class="container card">
+								<h4 id="title-${index}" class="container flex title">
+									.${tld}/
+								</h4>
+								<p class="subtext">
+									Watching: ${typeof watchers === 'string' ? 1 : watchers.length}
+								</p>
+								<div id="tag-${index}" class="container flex anchor ranked tag">
+									<span>
+										
+									</span>
+								</div>
+							</div>
+						</div>
+					`;
+				})
+			})
+			.catch(err=>{
+				console.log(err);
+			})
+		})();
+	</script>
+</body>
+</html>
