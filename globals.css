@@ -28,6 +28,28 @@ h1,h2,h3,h4,h5,h6,p{
 	display: inline-block;
 }
 p{font-size: 1rem}
+form{
+	padding: .375rem .75rem;
+	background-color: rgba(23, 22, 26, 1.0);
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+input,
+button{
+	font-size: calc((1rem) + 0.1em);
+	color: white;
+	background-color: rgba(43, 43, 46, 1.0);
+	margin: .5em;
+	border: none;
+	padding: .75em 1,5em;
+	border-radius: .25em;
+	font-weight: 600;
+}
+#add-tld-watcher{
+	background-color: mediumorchid;
+}
 .container{
 	inset: 0 !important;
 	top: 0;
@@ -91,6 +113,7 @@ nav {
 	justify-content: space-between;
 	flex-direction: row;
 	font-size: calc((1rem));
+	color: white;
 }
 header{
 	background-color: rgb(38,38,38);
