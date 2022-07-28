@@ -95,6 +95,7 @@ button{
 	padding: .75em 1.5em;
 }
 .--deeppink{color:deeppink;}
+.--limegreen{color:limegreen;}
 .--cyan{color:cyan;}
 .--blueviolet{color:blueviolet;}
 .--orange{color:orange;}
@@ -142,19 +143,25 @@ main{
 }
 #legenda{
 	position: relative;
-	display: flex;
+	display: grid;
 	align-items: center;
 	justify-content: center;
+	grid-template-columns: repeat(3, 33%);
+	grid-template-rows: 1fr;
+	margin: 0 auto;
+	width: min-content !important;
 }
 .ranking{
 	position: relative;
 	margin: .25em;
-	padding: 0;
+	padding: .25em;
 	display: inline-flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-
+	border: 4px solid currentcolor;
+	border-radius: .375em;
+	/*max-width: 120px;*/
 }
 
 #slds{
