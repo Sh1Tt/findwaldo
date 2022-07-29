@@ -115,6 +115,24 @@ nav {
 	flex-direction: row;
 	font-size: calc((1rem));
 	color: white;
+	background-color: rgba(7, 14, 4, 1);
+}
+nav .wrapper {
+	position: relative;
+	margin: .375em .75em;
+	padding: 0;
+}
+nav .wrapper.menu {
+	position: relative;
+	grid-template-rows: 1fr;
+	grid-template-columns: repeat(5, 20%);
+	align-items: center;
+	justify-content: center;
+	min-width: 33vw;
+
+}
+nav .wrapper.menu .item {
+	min-width: 80px;
 }
 header{
 	background-color: rgb(38,38,38);
