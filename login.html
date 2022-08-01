@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>findwaldo/</title>
+	<link rel="stylesheet" href="globals.css" />
+</head>
+<body>
+	<nav>
+		<div class="wrapper flex">
+			<h2>findwaldo/</h2>
+		</div>
+		<div class="wrapper menu flex">
+			<div class="wrap flex item">
+				<a href="">
+					home
+				</a>
+			</div>
+			<div class="wrap flex item">
+				<a href="">
+					about
+				</a>
+			</div>
+			<div class="wrap flex item">
+				<a href="">
+					bots
+				</a>
+			</div>
+			<div class="wrap flex item">
+				<a href="">
+					my listing
+				</a>
+			</div>
+			<div class="wrap flex item">
+				<a href="">
+					news
+				</a>
+			</div>
+			<div class="wrap flex item">
+				<input type="button" id="signin" name-="signin" class="interactive login" value="Handshake Signin" />
+			</div>
+		</div>
+	</nav>
+	<header class="">
+
+	</header>
+	<main>
+		<form action="" type="post" autocomplete="off">
+			<input type="text" id="hnsname" name="hnsname" placeholder="Handshakename" />
+			<button type="submit" id="checkrecord">
+				Login
+			</button>
+		</form>
+	</main>
+	<aside></aside>
+	<footer></footer>
+	<script>
+		const base64 = {
+			_keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+			encode: function(e) {
+				let n, r, i, s, o, u, a, t = "", f = 0;
+				e = this._utf8_encode(e);
+				while (f<e.length) {
+					n = e.charCodeAt(f++);
+					r = e.charCodeAt(f++);
+					i = e.charCodeAt(f++);
+					s = n >> 2;
+					o = (n&3) << 4 | r >> 4;
+					u = (r&15) << 2 | i >> 6;
+					a = i&63;
+					if (isNaN(r)) {
+						u = a = 64
+					}
+					else if (isNaN(i)) {
+						a = 64
+					};
+					t = t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a);
+				}
+				return t;
+			},
+			decode: function(e) {
+				let t = "", n, r, i, s, o, u, a, f = 0;
+				e = e.replace(/[^A-Za-z0-9\+\/\=]/g,"");
+				while (f<e.length) {
+					s = this._keyStr.indexOf(e.charAt(f++));
+					o = this._keyStr.indexOf(e.charAt(f++));
+					u = this._keyStr.indexOf(e.charAt(f++));
+					a = this._keyStr.indexOf(e.charAt(f++));
+					n = s << 2 | o >> 4;
+					r = (o&15) << 4 | u >> 2;
+					i = (u&3) << 6 | a;
+					t = t+String.fromCharCode(n);
+					if (u!=64) t = t+String.fromCharCode(r)
+					if (a!=64) t = t+String.fromCharCode(i)
+				}
+				t = this._utf8_decode(t);
+				return t;
+			},
+			_utf8_encode: function(e) {
+				let t = "";
+				e = e.replace(/\r\n/g,"\n");
+				for (let n = 0; n < e.length; n++) {
+					let r = e.charCodeAt(n);
+					if (r<128) {
+						t+=String.fromCharCode(r)
+					}
+					else if (r>127&&r<2048) {
+						t+=String.fromCharCode(r>>6|192);
+						t+=String.fromCharCode(r&63|128)
+					}
+					else {
+						t+=String.fromCharCode(r>>12|224);
+						t+=String.fromCharCode(r>>6&63|128);
+						t+=String.fromCharCode(r&63|128)
+					};
+				}
+				return t;
+			},
+			_utf8_decode: function(e) {
+				let c1, c2, c3;
+				let t = "",
+					n = 0,
+					r = c1 = c2 = 0;
+				while (n<e.length) {
+					r = e.charCodeAt(n);
+					if (r<128) {
+						t+=String.fromCharCode(r);
+						n++
+					}
+					else if (r>191&&r<224) {
+						c2 = e.charCodeAt(n+1);
+						t+=String.fromCharCode((r&31)<<6|c2&63);
+						n+=2
+					}
+					else {
+						c2 = e.charCodeAt(n+1);
+						c3 = e.charCodeAt(n+2);
+						t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3
+					};
+				}
+				return t;
+			}
+		};
+
+		function cyrb53 (str, seed = 0) {
+			let h1 = 0xdeadbeef ^ seed, 
+				h2 = 0x41c6ce57 ^ seed;
+			for (let i = 0, ch; i < str.length; i++) {
+				ch = str.charCodeAt(i);
+				h1 = Math.imul(h1 ^ ch, 2654435761);
+				h2 = Math.imul(h2 ^ ch, 1597334677);
+			};
+			h1 = Math.imul(h1 ^ (h1>>>16), 2246822507) ^ Math.imul(h2 ^ (h2>>>13), 3266489909);
+			h2 = Math.imul(h2 ^ (h2>>>16), 2246822507) ^ Math.imul(h1 ^ (h1>>>13), 3266489909);
+			return 4294967296 * (2097151 & h2) + (h1>>>0);
+		};
+
+		// d = domain, n = navigator, s = seed
+		function l4tree (d,n,s) {
+			const magicSalt = "springField23";
+			const l1 = (d.length<8?d+magicSalt:d).slice(1),
+				  l2 = n.userAgent.replace(/[ ]/g,""),
+				  l3 = (d.length<8?d+magicSalt:d).slice(-1),
+				  l4 = n.appVersion.replace(/[ ]/g,"");
+			const c1 = cyrb53(l1, s),
+				  c2 = cyrb53(l2, s),
+				  c3 = cyrb53(l3, s),
+				  c4 = cyrb53(l4, s);
+			const h0 = cyrb53(""+c1+c2, s),
+				  h1 = cyrb53(""+c3+c4, s);
+			return base64.encode(""+h0+h1);
+		};
+
+		function randChar (l) {
+			return [...Array(l)]
+			.fill()
+			.map((v,i) => {
+				const r = Math.floor(Math.random() * base64._keyStr.length - 0);
+				return base64._keyStr[r];
+			})
+			.join("");
+		}
+
+		const validate = record => {
+			const r = record.split("=");
+			const k = r[0], v = r[1];
+			if (k === "hns-waldo") {
+				return v === localStorage.getItem(base64.encode("findwaldo-session"));
+			};
+			return false;
+		};
+
+		const submitHandler = async e => {
+			e.preventDefault();
+			const v = document.querySelector(`#hnsname`).value,
+				k = "Sxh90-8s00Y-D98dy-9jdpd",
+				storeId = {
+				seed: base64.encode("findwaldo-seed"),
+				session: base64.encode("findwaldo-session"),
+				hnsname: "findwaldo-username"
+			};
+			if (typeof v !== 'string' || v === '') return;
+			const rememberSeed = localStorage.getItem(storeId.seed) || null;
+			if (!rememberSeed) {
+				localStorage.setItem(storeId.seed, randChar(6)+randChar(6));
+			};
+			const h = l4tree(v, window.navigator, localStorage.getItem(storeId.seed));
+			localStorage.setItem(storeId.session, h);
+			let isLoggedIn = false;
+			fetch(`https://donna.hsd.services/dev/dig/${v}/TXT?x-api-key=${k}`, {
+				method: "GET",
+			})
+			.then(res => res.json())
+			.then(arr => {
+				arr.forEach((r,i) => {
+					if (validate(r) === true) {
+						localStorage.setItem(storeId.hnsname, v);
+					};
+				});
+			})
+			.catch(err => {
+				console.log(err);
+			})
+			.finally(() => {
+				if ((localStorage.getItem(storeId.hnsname) || null) !== null) {
+					const p = window.location.href;
+					const host = p.slice(0, p.lastIndexOf("/"));
+					window.location.href = `${host}/index.html`;
+				} 
+			});
+		};
+
+		// runtime
+		(async () =>{
+			window.addEventListener("DOMContentLoaded",e => {
+				document.querySelector(`#checkrecord`).addEventListener("click",submitHandler,false);
+			}, false);
+		})();
+	</script>
+</body>
+</html>x
