@@ -172,15 +172,7 @@
 			return base64.encode(""+h0+h1);
 		};
 
-		function randChar (l) {
-			return [...Array(l)]
-			.fill()
-			.map((v,i) => {
-				const r = Math.floor(Math.random() * base64._keyStr.length - 0);
-				return base64._keyStr[r];
-			})
-			.join("");
-		}
+		const randChar = l => [...Array(l)].fill().map((v,i)=>base64._keyStr[Math.floor(Math.random()*base64._keyStr.length)]).join("");
 
 		const validate = record => {
 			const r = record.split("=");
