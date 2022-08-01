@@ -52,6 +52,7 @@
 				Login
 			</button>
 		</form>
+		<div data-stdout="hash"></div>
 	</main>
 	<aside></aside>
 	<footer></footer>
@@ -178,7 +179,7 @@
 			const r = record.split("=");
 			const k = r[0], v = r[1];
 			if (k === "hns-waldo") {
-				return v === localStorage.getItem(base64.encode("findwaldo-session"));
+				return v === localStorage.getItem(base64.encode("findwaldo-hash"));
 			};
 			return false;
 		};
@@ -189,17 +190,16 @@
 			k = "Sxh90-8s00Y-D98dy-9jdpd",
 			storeId = {
 				seed: base64.encode("findwaldo-seed"),
-				session: base64.encode("findwaldo-session"),
+				hash: base64.encode("findwaldo-hash"),
 				hnsname: "findwaldo-username"
 			};
 			if (typeof v !== 'string' || v === '') return;
 			const rememberSeed = localStorage.getItem(storeId.seed) || null;
 			if (!rememberSeed) {
-				localStorage.setItem(storeId.seed, 36);
+				localStorage.setItem(storeId.seed, Math.floor(Math.random()*32));
 			};
-			const h = l4tree(v, window.navigator, localStorage.getItem(storeId.seed));
-			localStorage.setItem(storeId.session, h);
-			let isLoggedIn = false;
+			const h = l4tree(v, window.navigator, rememberSeed||localStorage.getItem(storeId.seed));
+			localStorage.setItem(storeId.hash, `${h}`);
 			fetch(`https://donna.hsd.services/dev/dig/${v}/TXT?x-api-key=${k}`, {
 				method: "GET",
 			})
@@ -219,6 +219,9 @@
 					const p = window.location.href;
 					const host = p.slice(0, p.lastIndexOf("/"));
 					window.location.href = `${host}/index.html`;
+				}
+				else {
+					document.querySelector(`[data-stdout="hash"]`).innerHTML = localStorage.getItem(storeId.hash);
 				};
 			});
 		};
