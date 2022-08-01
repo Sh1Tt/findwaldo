@@ -186,8 +186,8 @@
 		const submitHandler = async e => {
 			e.preventDefault();
 			const v = document.querySelector(`#hnsname`).value,
-				k = "Sxh90-8s00Y-D98dy-9jdpd",
-				storeId = {
+			k = "Sxh90-8s00Y-D98dy-9jdpd",
+			storeId = {
 				seed: base64.encode("findwaldo-seed"),
 				session: base64.encode("findwaldo-session"),
 				hnsname: "findwaldo-username"
@@ -195,7 +195,7 @@
 			if (typeof v !== 'string' || v === '') return;
 			const rememberSeed = localStorage.getItem(storeId.seed) || null;
 			if (!rememberSeed) {
-				localStorage.setItem(storeId.seed, randChar(6)+randChar(6));
+				localStorage.setItem(storeId.seed, 36);
 			};
 			const h = l4tree(v, window.navigator, localStorage.getItem(storeId.seed));
 			localStorage.setItem(storeId.session, h);
@@ -219,7 +219,7 @@
 					const p = window.location.href;
 					const host = p.slice(0, p.lastIndexOf("/"));
 					window.location.href = `${host}/index.html`;
-				} 
+				};
 			});
 		};
 
