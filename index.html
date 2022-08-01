@@ -118,6 +118,11 @@
 			};
 
 			const loginHandler = e => {
+				if (user) {
+					localStorage.removeItem("findwaldo-username");
+					location.reload();
+					return;
+				};
 				const p = window.location.href;
 				const host = p.slice(0, p.lastIndexOf("/"));
 				window.location.href = `${host}/login.html`;
