@@ -304,3 +304,7 @@ main{
 .card .anchor{
 	position: absolute;
 }
+
+#hash-wrapper {
+	color: cornflowerblue;
+}
