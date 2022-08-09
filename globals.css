@@ -308,3 +308,7 @@ main{
 #hash-wrapper {
 	color: cornflowerblue;
 }
+
+.container.title:hover .show-on-hover {
+	visibility: visible !important;
+}

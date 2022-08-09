@@ -118,6 +118,7 @@
 			};
 
 			const loginHandler = e => {
+				const user = localStorage.getItem("findwaldo-username");
 				if (user) {
 					localStorage.removeItem("findwaldo-username");
 					location.reload();
@@ -169,6 +170,7 @@
 								<div class="wrapper title">
 									<h5 id="title-${index}" class="container title">
 										.<span style="color:${(/\p{Extended_Pictographic}/u).test(tld)?'unset':'darkorange'};">${tld}</span>
+										<span class="show-on-hover" style="position:absolute;top:0;left:0;visibility:collapse;background-color:black;color:inherit;z-index:999;margin:0.1775em 0.625em;max-width: 90%;white-space: pre-wrap;word-break: break-all;">${tld}</span>
 									</h5>
 									<span class="container title">
 										<img src="./img/favicon-32x32.png" alt="Handshake (HNS) logo" width="24" height="24" />
