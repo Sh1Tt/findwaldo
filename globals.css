@@ -143,11 +143,11 @@ header{
 	background-color: rgb(38,38,38);
 	background-color: rgba(38,38,38,1);
 	color: white;
-	background-image: url(header1.png);
+	background-image: url(bg.jpg);
 	background-position: center;
 	background-size: contain;
 	background-repeat: no-repeat;
-	height: 80%;
+	height: 400px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
