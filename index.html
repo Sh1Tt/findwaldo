@@ -1,81 +1,174 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>findwaldo/</title>
+	<style>html,body{background-color:rgba(17,23,46,1);}</style>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="globals.css" />
+	<script type="text/javascript">
+			const clickMarcoHandler = tld => {
+				const href = location.href.replace(`index.html`,`index.html?name=${tld}`);
+				location.href= href;
+			};
+
+			const dropdownHandler = id => {
+				const c = document.body.querySelector(`#${id}`);
+				if (c.classList.contains("open")) {
+					c.classList.remove("open");
+					c.classList.add("closed");
+				}
+				else {
+					c.classList.remove("closed");
+					c.classList.add("open");
+				}
+			};
+	</script>
+	<title>findwaldo/</title>
 </head>
 <body>
 	<nav>
-		<div class="wrapper flex">
-			<h2>findwaldo/</h2>
+		<div id="banner-logo" class="wrapper flex">
+			<img class="banner-logo" src="img/bot-dwebo.png" width="32" height="32" alt="" />
+			<h2 class="banner-logo">findwaldo/</h2>
 		</div>
 		<div class="wrapper menu flex">
-			<div class="wrap flex item">
-				<a href="">
+			<div class="wrap flex item route">
+				<div onclick="{location.href = '/index.html'}">
 					home
-				</a>
+				</div>
+			</div>
+			<div class="wrap flex item route">
+				<span onclick="dropdownHandler(`docs`)" class="navigation route link">
+					Docs
+				</span>
+				<div class="anchor dropdown">
+					<div id="docs" class="dropdown container closed">
+						<span class="dropdown option" onclick="routeHandler('/docs/index.html?#website')">
+							Website
+						</span>
+						<span class="dropdown option" onclick="routeHandler('/docs/index.html?#api')">
+							API
+						</span>
+						<div class="dropdown option sub">
+							<span class="sub">
+								Bot
+							</span>	
+							<div>
+								<span class="sub option" onclick="routeHandler('/docs/index.html?#twitterbot')">
+									Twitter
+								</span>
+								<span class="sub option" onclick="routeHandler('/docs/index.html?#hnschatbot')">
+									Hnschat
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="wrap flex item route">
+				<div onclick="{location.href = '/índex.html?portfolio=defualt'}">
+					Portfolio
+				</div>
+			</div>
+			<div class="wrap flex item route">
+				<div onclick="{location.href = '/news.html'}">
+					News
+				</div>
 			</div>
 			<div class="wrap flex item">
-				<a href="">
-					about
-				</a>
-			</div>
-			<div class="wrap flex item">
-				<a href="">
-					bots
-				</a>
-			</div>
-			<div class="wrap flex item">
-				<a href="">
-					my listing
-				</a>
-			</div>
-			<div class="wrap flex item">
-				<a href="">
-					news
-				</a>
-			</div>
-			<div class="wrap flex item">
-				<input type="button" id="signin" name-="signin" class="interactive login" value="Handshake Signin" />
-
+				<input type="button" id="signin" name-="signin" class="interactive login" value="Login" />
 			</div>
 		</div>
 	</nav>
-	<header class="">
-		<h1 class="container flex">findwaldo/</h1>
+	<header>
+		<div style="width: 426px;margin:0 auto;"></div>
 		<div>
+			<h1 class="og container flex">
+				Find the owner of a Handshake TLD
+			</h1>
+			<p class="og">
+				Hot leads or cold negotiations? Findwaldo works like a double-edged sword!
+			</p>
+		</div>
+		<div class="cta">
 			<div>
 				<form method="post" action="" autocomplete="off">
-					<input type="text" id="tld" name="tld" placeholder="Handshake TLD" />
-					<input type="text" id="chatname" name="chatname" placeholder="hnschat.name" />
-					<button type="submit" id="add-tld-watcher">
-						MARCO
-					</button>
+					<span id="top-icon" class="wrapper">
+						<img class="logo" src="img/favicon-32x32.png" width="64" height="64" alt="" style="padding: 8px" />
+					</span>
+					<div class="em-spacer"></div>
+					<div style="
+						border: 2px dotted white;
+						margin: .375em .75em;
+						padding: .25em .5em
+					">
+						<div class="em-spacer"></div>
+						<h4 class="field">
+							Find an owner:
+						</h4>
+						<div class="field">
+							<input type="text" id="tld" name="tld" placeholder="Handshake TLD" />
+						</div>
+						<div class="field">
+							<input type="text" id="chatname" name="chatname" placeholder="hnschat.name" />
+						</div>
+						<div class="field">
+
+							<button style="margin-left:auto;" type="submit" id="add-tld-watcher">
+								SUBMIT
+							</button>
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>
-		<div></div>
 	</header>
 	<main>
 		<section>
-			<!--  -->
+			<h2>
+				Rules of the game..
+			</h2>
+			<article>
+				<p>
+					Findwaldo has been build to aid you on your quest, finding the owner of a (HNS) TLD.
+					Initially I tought looking for a certain TLD owner was like looking for Waldo in a crowded image.
+					When building the first component of Findwaldo/, I came to the conclusion that I needed a second expression,
+					a command, to define roles. Quickly the switch to Marco Polo (The game) was made. 
+					In the game, that&apos;s named after the explorer who rediscovered America, 
+					the player who is (blindfolded in some variations) searching, while shouting: "Marco!". 
+					The other player then discloses their position by shouting: "Polo!".
+				</p>
+				<p>
+					On this very same principals 
+				</p>
+			</article>
+			<div>
+
+			</div>
 		</section>
 
 		<section>
 			<div id="legenda" class="container flex wrap">
-				<div class="--limegreen ranking">
-					<p class="">BeezKneez</p>
-					<span>🔥</span>
+				<div class="rank-legend">
+
+					<p class="--limegreen">BeezKneez</p>
+					<div class="--limegreen ranking">
+						<span>🔥</span>
+					</div>
 				</div>
-				<div class="--deeppink ranking">
-					<p class="">KindaHot</p>
-					<span>😍</span>
+				<div class="rank-legend">
+
+					<p class="--deeppink">KindaHot</p>
+					<div class="--deeppink ranking">
+						<span>😍</span>
+					</div>
 				</div>
-				<div class="--blue ranking">
-					<p class="">HollaAtYa</p>
-					<span>🤝</span>
+				<div class="rank-legend">
+
+					<p class="--blue">HollaAtYa</p>
+					<div class="--blue ranking">
+						<span>🤝</span>
+					</div>
 				</div>
 			</div>
 			<div class="container flex">
@@ -165,7 +258,7 @@
 					const watchers = doc.watchers;
 					const iWatchers = typeof watchers === 'object' ? watchers.length : 1;
 					document.querySelector(`[data-stdout="tlds"]`).innerHTML += `
-						<div key="${index}" id="wrapper-${index}" class="container flex wrapper">
+						<div key="${index}" data-key="${index}" data-card="${tld}" id="wrapper-${index}" class="container flex wrapper" onclick="clickMarcoHandler(this.dataset.card)">
 							<div id="card-${index}" class="container card">
 								<div class="wrapper title">
 									<h5 id="title-${index}" class="container title">
@@ -181,7 +274,7 @@
 										<img class="eye" src="data:image/png;base64,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" width="24" height="24" />
 										<p>${iWatchers}</p>
 									</div>
-									<div id="tags-${index}" data-tags="${index}">
+									<div id="tags-${index}" class="tags" data-tags="${index}">
 										${piped.stats.top10.filter((v,i)=>i<=1).includes(iWatchers)?'<div class="tag beezkneez"><p>🔥</p></div>':''}
 										${piped.stats.top10.filter((v,i)=>i>1).includes(iWatchers)?'<div class="tag kindahot"><p>😍</p></div>':''}
 									</div>
