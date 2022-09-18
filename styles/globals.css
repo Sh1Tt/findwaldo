@@ -76,10 +76,11 @@ div.loading {
 
 
 div.loading #chevron {
-	animation: 5s rotater linear infinite;
+	animation: 2s rotater linear infinite;
 	width: 50px;
 	height: 50px;
-	background: conic-gradient(transparent 0.5%, grey 5%, transparent);
+	background: conic-gradient(transparent 0.5%, var(--theme-color) 5%, transparent);
+	transform: rotate3d(180deg, 0, 0);
 	border-radius: 50%;
 	margin: 7.5% auto;
 }
@@ -91,8 +92,8 @@ div.loading #chevron::after {
 	z-index: 1;
 	content: '';
 	position: absolute;
-	inset: 2.5%;
-	width: 95%;
+	inset: 4.5%;
+	width: 91%;
 	aspect-ratio: 1;
 }
 @KEYFRAMES rotater {
