@@ -1,0 +1,105 @@
+/* Theme settings */
+:root {
+	--bg-main-100: rgba(24,25,32,1);
+	--bg-second-100: rgba(31,34,41,1);
+	--bg-cards-100: rgba(35,36,43,1);
+	--bg-hilite-100: rgba(37,39,49,1);
+	--bg-menubar-top-100: rgba(35,37,48,1);
+	--bg-menubar-100: rgba(31,32,41,1);
+	--bg-menubar-bottom-100: rgba(35,36,46,1);
+
+	--response-pad: 2.5em;
+	--response-home-pad: 2.5em 1.25em;
+
+	--profile-width: 386;
+
+	--theme-color: goldenrod;
+}
+@media screen and (max-width: 1400px) {
+	:root {
+		--profile-width: 0;
+	}	
+}
+@media screen and (max-width: 678px) {
+	:root {
+		--response-pad: 1.75em;
+		--response-home-pad: 1.75em 0.875em;
+	}	
+}
+@media screen and (max-width: 320px) {
+	:root {
+		--response-pad: 1.125em;
+		--response-home-pad: 1.625em 0;
+	}	
+}
+
+/* Experimental section */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    box-shadow: 0 0 0 1000px #1b1b1b inset !important;
+    -webkit-box-shadow: 0 0 0 1000px #1b1b1b inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+/*Custom ScrollBar*/
+  /* width & round */
+  ::-webkit-scrollbar, iframe::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 50%;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track, iframe::-webkit-scrollbar-track {
+    background: rgba(--bg-menubar-100);
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb, iframe::-webkit-scrollbar-thumb {
+    background: var(--bg-hilite-100);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover, iframe::-webkit-scrollbar-thumb:hover {
+    background: rgb(201, 181, 6);
+  }
+
+div.loading {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 1em;
+}
+
+
+div.loading #chevron {
+	animation: 5s rotater linear infinite;
+	width: 50px;
+	height: 50px;
+	background: conic-gradient(transparent 0.5%, grey 5%, transparent);
+	border-radius: 50%;
+	margin: 7.5% auto;
+}
+
+
+div.loading #chevron::after {
+	background: var(--bg-second-100);
+	border-radius: 50%;
+	z-index: 1;
+	content: '';
+	position: absolute;
+	inset: 2.5%;
+	width: 95%;
+	aspect-ratio: 1;
+}
+@KEYFRAMES rotater {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(-360deg);
+	}
+}

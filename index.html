@@ -1,302 +1,1129 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<style>html,body{background-color:rgba(17,23,46,1);}</style>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="globals.css" />
-	<script type="text/javascript">
-			const clickMarcoHandler = tld => {
-				const href = location.href.replace(`index.html`,`index.html?name=${tld}`);
-				location.href= href;
-			};
+<html lang="en">
+	<head>
+		<style>body,html{background-color:rgb(31,34,41);}</style>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Findwaldo/ | For buyers and sellers</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="styles/reset.css">
+		<link rel="stylesheet" href="styles/globals.css">
+		<style>
+			html, body {
+				max-height: 100%;
+			}
 
-			const dropdownHandler = id => {
-				const c = document.body.querySelector(`#${id}`);
-				if (c.classList.contains("open")) {
-					c.classList.remove("open");
-					c.classList.add("closed");
+			div#slide-frame {
+				position: fixed;
+				top: 0;
+				right: 0;
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				width: max-content;
+				display: flex;
+				flex-direction: row-reverse;
+				min-width: 100%;
+			}
+
+			nav.right-side {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				width: max-content;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: stretch;
+				transition: .17s ease-in-out;
+				max-width: 100vw;
+				z-index: 9999;
+			}
+
+			
+			nav.right-side div.top.wrapper {
+				flex: 0 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: flex-start;
+				background-color: var(--bg-menubar-top-100);
+			}
+			
+				nav.right-side div.top.wrapper span {
+					padding: var(--response-pad);
 				}
-				else {
-					c.classList.remove("closed");
-					c.classList.add("open");
+				.open {
+					min-width: 386px;
+					max-width: 99vw;
 				}
-			};
-	</script>
-	<title>findwaldo/</title>
-</head>
-<body>
-	<nav>
-		<div id="banner-logo" class="wrapper flex">
-			<img class="banner-logo" src="img/bot-dwebo.png" width="32" height="32" alt="" />
-			<h2 class="banner-logo">findwaldo/</h2>
-		</div>
-		<div class="wrapper menu flex">
-			<div class="wrap flex item route">
-				<div onclick="{location.href = '/index.html'}">
-					home
-				</div>
-			</div>
-			<div class="wrap flex item route">
-				<span onclick="dropdownHandler(`docs`)" class="navigation route link">
-					Docs
-				</span>
-				<div class="anchor dropdown">
-					<div id="docs" class="dropdown container closed">
-						<span class="dropdown option" onclick="routeHandler('/docs/index.html?#website')">
-							Website
-						</span>
-						<span class="dropdown option" onclick="routeHandler('/docs/index.html?#api')">
-							API
-						</span>
-						<div class="dropdown option sub">
-							<span class="sub">
-								Bot
-							</span>	
-							<div>
-								<span class="sub option" onclick="routeHandler('/docs/index.html?#twitterbot')">
-									Twitter
-								</span>
-								<span class="sub option" onclick="routeHandler('/docs/index.html?#hnschatbot')">
-									Hnschat
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="wrap flex item route">
-				<div onclick="{location.href = '/índex.html?portfolio=defualt'}">
-					Portfolio
-				</div>
-			</div>
-			<div class="wrap flex item route">
-				<div onclick="{location.href = '/news.html'}">
-					News
-				</div>
-			</div>
-			<div class="wrap flex item">
-				<input type="button" id="signin" name-="signin" class="interactive login" value="Login" />
-			</div>
-		</div>
-	</nav>
-	<header>
-		<div style="width: 426px;margin:0 auto;"></div>
-		<div>
-			<h1 class="og container flex">
-				Find the owner of a Handshake TLD
-			</h1>
-			<p class="og">
-				Hot leads or cold negotiations? Findwaldo works like a double-edged sword!
-			</p>
-		</div>
-		<div class="cta">
-			<div>
-				<form method="post" action="" autocomplete="off">
-					<span id="top-icon" class="wrapper">
-						<img class="logo" src="img/favicon-32x32.png" width="64" height="64" alt="" style="padding: 8px" />
+			
+			nav.right-side div.content.wrapper {
+				flex: 1 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: center;
+				background-color: var(--bg-menubar-100);
+			}
+
+				nav.right-side div.content.wrapper span {
+					transform: rotate(90deg);
+					padding: var(--response-home-pad);
+				}
+
+				nav.right-side div.content.wrapper span a {
+					color: rgba(238,243,244,1);
+				}
+
+
+			nav.right-side div.footer.wrapper {
+				flex: 0 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				align-items: flex-start;
+				background-color: var(--bg-menubar-bottom-100);
+			}
+
+			nav.right-side div.footer.wrapper span {
+				padding: var(--response-pad);
+				display: grid;
+				justify-content: center;
+			}
+
+			nav.right-side div.footer.wrapper span img {
+				margin: auto;
+			}
+			
+			
+			main.sticky {
+				overflow-y: scroll;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: stretch;
+				height: 100%;
+				width: 100%;
+    			margin-left: calc(var(--profile-width) * 1px);
+			}
+
+			main.sticky div.centerfold div.bg {
+				background: url(img/bg.jpeg);
+				width: 100%;
+				height: 680px;
+				filter: blur(32px);
+				position: absolute;
+				inset: 0;
+			}
+			main.sticky div.centerfold div.drak {
+				margin: 1em 2em;
+				width: calc((100vw) - (var(--profile-width) * 1px) - 18px - (2 * 2em ) - (2 * 2.25rem));
+				aspect-ratio: 2.5;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+			}
+			main.sticky div.centerfold div.drak div.navi {
+				color: rgba(238,243,254,1);
+				margin: 2.5%;
+			}
+			main.sticky div.centerfold div.drak div.navi a {
+				padding: 1.25em 2.5em;
+			}
+			main.sticky div.centerfold div.drak div.banner {
+				flex: 0 0 480px;
+				margin: 5% 2.5%;
+				overflow: clip;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper {
+				position: absolute;
+				top: 0;
+				right: 6.25%;
+				width: 512px;
+				background: rgba(13,14,21,1);
+				height: 286px;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				display: block;
+				overflow: hidden;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure {
+				position: absolute;
+				width: calc((11 * 100%));
+				height: 100%;
+				display: flex;
+				justify-content: space-evenly;
+				align-items: stretch;
+				animation: slide-left 66s steps(11, end) infinite;
+				transition: .4s;
+			}
+			@KEYFRAMES slide-left {
+				0% {
+					transform: translateX(0%);
+				}
+				100% {
+					transform: translateX(-100%);
+				}
+			}
+
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div.ad {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				z-index: 1;
+				border: 1px solid var(--bg-menubar-top-100);
+				font-family: 'Courier New', Courier, monospace;
+			}
+
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div.ad h4,
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div.ad p {
+				margin: var(--response-pad);
+				font-size: 15pt;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div.ad p {
+				background: var(--bg-main-100);
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div[data-ad="0"] {
+				color: crimson;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div[data-ad="1"] {
+				color: dodgerblue;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div[data-ad="2"] {
+				color: white;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div[data-ad="3"] {
+				color: grey;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div[data-ad="4"] {
+				color: goldenrod;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div[data-ad="5"] {
+				color: mediumseagreen;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div[data-ad="6"] {
+				color: palevioletred;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div[data-ad="7"] {
+				color: lightskyblue;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div[data-ad="8"] {
+				color: darkgoldenrod;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div[data-ad="9"] {
+				color: lightgreen;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div[data-ad="10"] {
+				color: plum;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div.ad span.bg.wrapper {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: -1;
+				inset: 0;
+				
+				display: grid;
+				justify-items: center;
+				overflow: clip;
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div.ad span.bg.wrapper::after {
+				position: absolute;
+				content: '';
+				z-index: 5;
+				clip-path: polygon(0 0, 0 100%, 27.5% 100%, 52.5% 0);
+				width: 100%;
+				height: 100%;
+				inset: 0;
+				background: var(--bg-hilite-100);
+			}
+			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container div.figure div.ad span.bg.wrapper img {
+				width: 100%;
+				height: 100%;
+				border: 0px solid transparent;
+				outline: none;
+				transform: scale(1.1);
+			}
+				
+			main.sticky div.centerfold div.drak div.banner form  {
+				width: min-content;
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+				justify-content: space-between;
+				align-items: flex-start;
+			}
+			main.sticky div.centerfold div.drak div.banner form div.inputs {
+				display: flex;
+				padding: 2.5em 1.25em;
+				background: var(--bg-main-100);
+				font-size: 18px;
+			}
+			main.sticky div.centerfold div.drak div.banner form div.inputs input {
+				padding: 0.75em 1.5em;
+				margin: 0 1.25em;
+			}
+
+
+			main.sticky div.centerfold div.drak div.banner form button {
+				margin: 7.5em 2.5em;
+				padding: 1.25em 2.5em;
+				background: goldenrod;
+				font-size: 19px;
+				font-weight: 800;
+				color: rgba(236,241,254,.5);
+				border: 1px solid rgba(164,255,42,0.55);
+			}
+
+
+			main.sticky div.centerfold div.drak div.banner form button:active {
+				filter: brightness(1.25);
+				color:rgba(41,42,58,1);
+			}
+			main.sticky div.centerfold div.drak div.statistics {
+				display: flex;
+				justify-content: space-between;
+				padding: var(--response-pad);
+				margin: 1.5em 0;
+				align-items: center;
+			}
+			main.sticky div.centerfold div.drak div.statistics div.field {
+				flex: 1 1;
+				display: flex;
+				justify-content: space-between;
+			}
+			main.sticky div.centerfold div.drak div.statistics div.field h4 {
+				color: goldenrod;
+				margin: 0 2.5em;
+			}
+			main.sticky div.centerfold div.drak div.statistics div.field span {
+				color: rgba(238,243,254,1);
+				margin: 0 2.5em;
+			}
+			main.sticky div.centerfold div.drak div.watched {
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-start;
+				align-items: center;
+				flex-wrap: wrap;
+				margin: 0 2.5em;
+			}
+			main.sticky div.centerfold div.drak div.watched div.wrapper div.container.card {
+				background: var(--bg-hilite-100);
+				color:rgba(238,243,254,.5);
+				min-width: 296px;
+				margin: 0.75em 1.5rem 0.75em 1.75rem;
+				max-width: 336px;
+				overflow: clip;
+				min-height: 200px;
+				max-height: 214px;
+				padding: 0.375em;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: stretch;
+			}
+			main.sticky div.centerfold div.drak div.watched div.wrapper div.container.card div.title {
+				display: flex;
+				width: 100%;
+				margin: 0.75em 0;
+				padding: 0 0.75em;
+				justify-content: space-between;
+				align-items: center;
+				max-width: 100%;
+			}
+			main.sticky div.centerfold div.drak div.watched div.wrapper div.container.card div.title h4 {
+				max-width: 248px;
+				text-overflow: ellipsis;
+				display: flex;
+				font-size: 15pt;
+			}
+			main.sticky div.centerfold div.drak div.watched div.wrapper div.container.card div.title h4 span {
+				color: var(--theme-color);
+				word-break: keep-all;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+			main.sticky div.centerfold div.drak div.watched div.wrapper div.container.card div.subtext,
+			main.sticky div.centerfold div.drak div.watched div.wrapper div.container.card div.subtext div.watchers,
+			main.sticky div.centerfold div.drak div.watched div.wrapper div.container.card div.watchers div.tags {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+			}
+			.flex {
+				flex: 1 1;
+			}
+
+		</style>
+		<style>
+			header.left-side {
+				height: 100%;
+				width: calc(var(--profile-width) * 1px);
+				display: flex;
+				flex-direction: column;
+				align-items: stretch;
+				justify-content: space-between;
+				position: fixed;
+				z-index: 99;
+				top: 0;
+				left: 0;
+				background: var(--bg-second-100);
+				overflow: hidden;
+			}
+
+			header.left-side div.top.wrapper {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				align-items: center;
+			}
+			
+			header.left-side div.top.wrapper div.profile {
+				width: 100%;
+				display: flex;				
+				flex-direction: column;
+				justify-content: space-evenly;
+				align-items: center;
+				color: rgba(238,243,254,1);
+				/* padding: var(--response-pad); */
+				background: var(--bg-hilite-100);
+				padding-bottom: 3em;
+			}
+
+			header.left-side div.top.wrapper div.profile span.picture.wrapper {
+				border: 2px dashed rgba(41,42,58,.25);
+				filter: drop-shadow(0 1px 2px black);
+				border-radius: 50%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				padding: var(--response-pad);
+				margin: 1.25em;
+				background: var(--bg-menubar-bottom-100);
+			}
+				span.picture.wrapper::after {
+					content: '';
+					position: absolute;
+					top: 82.5%;
+					left: 82.5%;
+					background: goldenrod;
+					width: 1em;
+					height: 1em;
+					border-radius: 50%;
+					box-shadow: 1px 1px 4px rgb(1 2 10 / 50%);
+				}
+
+			header.left-side div.top.wrapper div.profile h1.title {
+				padding: 0.375em .75em;
+				font-size: 18pt;
+			}
+
+			header.left-side div.top.wrapper div.profile span.subtitle {
+				padding: 0.375em .75em;
+
+			}
+			header.left-side div.middle.wrapper {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				align-items: center;
+				overflow: scroll;
+				padding-top: 57.5%;
+				transform: scaleY(1.025) translateY(0.75em);
+			}
+
+			header.left-side div.middle.wrapper div.info {
+				width: 100%;
+				height: max-content;
+				flex: 1 1;
+				display: flex;
+				flex-direction: column;
+				align-items: stretch;
+				justify-content: space-evenly;
+				padding: var(--response-pad);
+			}
+
+			header.left-side div.middle.wrapper div.info div.field {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				margin: 0.5em 0;
+    			padding: 0 1em;
+			}
+
+			header.left-side div.middle.wrapper div.info div.field span.key {
+				color:rgba(238,243,254,1);
+			}
+			header.left-side div.middle.wrapper div.info div.field span.value {
+				color:rgba(238,243,254,.5);
+			}
+			
+			header.left-side div.middle.wrapper div.spacer {
+				width: 75%;
+				height: 0;
+				border: 2px solid var(--bg-hilite-100);
+				transform: translateY(-4px);
+			}
+			
+			header.left-side div.middle.wrapper div.metrics {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				padding: var(--response-pad);
+			}
+			
+			header.left-side div.middle.wrapper div.metrics div.subject.wrapper {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				margin: 0.5em;
+			}
+			
+			header.left-side div.middle.wrapper div.metrics div.subject.wrapper span.gauge {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border-radius: 50%;
+				padding: 1em;
+				background: var(--bg-second-100);
+				color:rgba(238,243,254,.5);
+				aspect-ratio: 1;
+			}
+				span.gauge::after {
+					position: absolute;
+					inset: -5%;
+					content: '';
+					z-index: -1;
+					transform: scale(1.1);
+					background-color: goldenrod;
+					border-radius: 50%;
+				}
+			
+			header.left-side div.middle.wrapper div.metrics div.subject.wrapper span.title {
+				color: rgba(238,243,254,1);
+				margin: 1em auto 0;
+			}
+			
+			header.left-side div.middle.wrapper div.sliders {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				padding: var(--response-pad);
+			}
+							
+			header.left-side div.middle.wrapper div.sliders div.subject.wrapper {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: stretch;
+			}
+
+			header.left-side div.middle.wrapper div.sliders div.subject.wrapper div.field {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				margin: 0.5em 0;
+    			padding: 0 1em;
+			}
+
+			header.left-side div.middle.wrapper div.sliders div.subject.wrapper div.field span.key {
+				color: rgba(238,243,254,1);
+			}
+
+			header.left-side div.middle.wrapper div.sliders div.subject.wrapper div.field span.value {
+				color: rgba(238,243,254,.5);
+			}
+
+			header.left-side div.middle.wrapper div.sliders div.subject.wrapper progress {
+				padding: 0.125em 0.25em;
+				filter: hue-rotate(196deg) brightness(1.5);
+				flex: 1 1;
+				width: 75%;
+				margin: 0.5em auto;
+				transform: scale(1.25);
+			}
+						
+			header.left-side div.middle.wrapper div.hotlinks {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				padding: var(--response-pad);
+				color: rgba(238,243,254,.5);
+			}
+					
+			header.left-side div.middle.wrapper div.hotlinks div.subject.wrapper {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: stretch;
+			}
+
+			header.left-side div.middle.wrapper div.hotlinks div.subject.wrapper div.field {
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-start;
+				align-items: flex-start;
+				margin: 0.5em 0;
+    			padding: 0 1em;
+			}
+
+			header.left-side div.middle.wrapper div.hotlinks div.subject.wrapper div.field span {
+				width: 15px;
+				height: 15px;
+			}
+
+			header.left-side div.middle.wrapper div.hotlinks div.subject.wrapper div.field a {
+				margin: auto 1em;
+
+			}
+
+			header.left-side div.middle.wrapper div.author {
+				width: 100%;
+				display: flex;
+				justify-content: flex-start;
+				padding: var(--response-pad);
+				color: rgba(238,243,254,.5);
+			}
+
+			header.left-side div.middle.wrapper div.author div.field {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				margin: 0 1em;
+			}
+
+			header.left-side div.middle.wrapper div.platforms {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				padding: var(--response-pad);
+				color: rgba(238,243,254,.5);
+				background-color: var(--bg-menubar-100);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="slide-frame">
+			<nav class="right-side">
+				<div class="top wrapper">
+					<span class="menu-button">
+						<img class="interactive" width="18" height="18" alt="hamburger-menu" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAAWklEQVRoge3WwQ2AMAwEQQelb6AISkidUASWbEUzFdz9NgKAAuNZ66oekWFGjLN6RIajekAWR7qZEe9dPQIASCLju9kmGh3pRsYDwE5kfDfbRKMj3ch4AP74APyyDUvPAmfrAAAAAElFTkSuQmCC" />
 					</span>
-					<div class="em-spacer"></div>
-					<div style="
-						border: 2px dotted white;
-						margin: .375em .75em;
-						padding: .25em .5em
-					">
-						<div class="em-spacer"></div>
-						<h4 class="field">
-							Find an owner:
-						</h4>
-						<div class="field">
-							<input type="text" id="tld" name="tld" placeholder="Handshake TLD" />
-						</div>
-						<div class="field">
-							<input type="text" id="chatname" name="chatname" placeholder="hnschat.name" />
-						</div>
-						<div class="field">
-
-							<button style="margin-left:auto;" type="submit" id="add-tld-watcher">
-								SUBMIT
-							</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</header>
-	<main>
-		<section>
-			<h2>
-				Rules of the game..
-			</h2>
-			<article>
-				<p>
-					Findwaldo has been build to aid you on your quest, finding the owner of a (HNS) TLD.
-					Initially I tought looking for a certain TLD owner was like looking for Waldo in a crowded image.
-					When building the first component of Findwaldo/, I came to the conclusion that I needed a second expression,
-					a command, to define roles. Quickly the switch to Marco Polo (The game) was made. 
-					In the game, that&apos;s named after the explorer who rediscovered America, 
-					the player who is (blindfolded in some variations) searching, while shouting: "Marco!". 
-					The other player then discloses their position by shouting: "Polo!".
-				</p>
-				<p>
-					On this very same principals 
-				</p>
-			</article>
-			<div>
-
-			</div>
-		</section>
-
-		<section>
-			<div id="legenda" class="container flex wrap">
-				<div class="rank-legend">
-
-					<p class="--limegreen">BeezKneez</p>
-					<div class="--limegreen ranking">
-						<span>🔥</span>
-					</div>
 				</div>
-				<div class="rank-legend">
-
-					<p class="--deeppink">KindaHot</p>
-					<div class="--deeppink ranking">
-						<span>😍</span>
-					</div>
+				<div class="content wrapper">
+					<span>
+						<a href="">
+							HOME
+						</a>
+					</span>
 				</div>
-				<div class="rank-legend">
-
-					<p class="--blue">HollaAtYa</p>
-					<div class="--blue ranking">
-						<span>🤝</span>
-					</div>
+				<div class="footer wrapper">
+					<span class="option">
+						<img width="24" height="24" alt="wallet button icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAACjklEQVRoge2YO2gUURSGv3OzEUTFYJNmKwVTBYRYGARJaSmBLMlugkSE4GoEX4WFjYqNGDFx1yblzmwYC+1sUqUx+KiCYJU0UcE0KimUzM6xMLsuYWYfyWYmrvPBwJ17zz38P/fJhZiYmJiYmO0jQQ3ThUKyQ+SiID2KdIQpaiuClhT5aNyO2UvnU5/8Y3yYKRR6jZgFoGtXFTbPN0+9M5Ojo0tbG4xftBEzxd4zAdBlxDzya0gEdOivKr8GWW29pmbQJH819ftFBBk5UC4I+jibST9vsbKmyFvWkCJlAwf9Ynyn1r9I2xgJmloVFHFylh2Glhoa6tM2I9I2RhqYWkwZdDEMMUF4yCmB67Vi6hox6GI2k4l6+0WDb1PA/zS1wmB6bu6YKZV6TNVBXM3m1KpJpEbytn1OlbuUvF6QwG22ngmI0EjOsh6qcrNV+SJZI3nbngRpmQmIYERmHefIrw33XlXVD4TbiVLpxcTY2Be/PpuXRqdW3tBH5KfrDgKHy/+iZvhyOp13RZIzxeLJ7eYN3Yio9lX9fsiODr/K2/Y4Yt4YT9/mbXt8O3kjWCNyqFKCVQBVOV2uqy43QwRGtLIOFE44jrMPvKcgK8Dyn3LzhL7YPZg3VLbd7jXXfZBNp2+JyNGd5A3dSHdn5/zahrsE9AKg3HhWLPblLOulwGe/PnvyZE+lUqWZYvGC8XQB2A+gygDIwE5O9kgOxMmRkXeKngW+tipnZLffK5nMQqIzcVyRO8B7YH0n+SK9NE6kUt+B+5tfIHvyZN8t2sZII89B13JWcSgMMcEaNFkvppE10t/Yy1K0BEwtWQlXRlMs+1UGjIg3qMhVQXwfjKNC0XXPM0+i1hETExMT0378Bjcyu4Wp4ip7AAAAAElFTkSuQmCC">
+					</span>
+					<span class="option">
+						<img width="24" height="24" alt="settings button icon" src="data:image/png;base64,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">
+					</span>
 				</div>
-			</div>
-			<div class="container flex">
-				<input type="text" placeholder="under construction">
-				<input type="button" value="search">
-			</div>
-		</section>
-		<section class="container flex wrap" id="slds" data-stdout="tlds">
-			
-			
-		</section>
-	</main>
-	<aside></aside>
-	<footer></footer>
-	<script>
-		(async () =>{
-			const submitHandler = e => {
-				e.preventDefault();
-				const tld = document.querySelector(`#tld`).value;
-				const name = document.querySelector(`#chatname`).value;
-				if(!!tld && tld!=='' && !!name && name!=='') {
-					const domain = tld.replace(".","").replace("/","");
-					const hnsname = name.replace(".","").replace("/","");
-					fetch(`https://donna.hsd.services/findwaldo/v1/add/${domain}/${hnsname}`,{
-						method: "GET",
-						headers: {
-							"Content-Type": "application/json",
-							"x-api-key": "Sxh90-8s00Y-D98dy-9jdpd"
-						}
-					})
-					.then(res=>res.json())
-					.then(data=>{
-						console.log(data);
-						location.reload();
-					})
-					.catch(err=>{
-						console.log(err);
-					});
-				};
-			};
-
-			const loginHandler = e => {
-				const user = localStorage.getItem("findwaldo-username");
-				if (user) {
-					localStorage.removeItem("findwaldo-username");
-					location.reload();
-					return;
-				};
-				const p = window.location.href;
-				const host = p.slice(0, p.lastIndexOf("/"));
-				window.location.href = `${host}/login.html`;
-			};
-
-			let analyze = [];
-			
-			const data = fetch("https://donna.hsd.services/findwaldo/v1/list?x-api-key=Sxh90-8s00Y-D98dy-9jdpd")
-			.then(res=>res.json())
-			.then(data=>{
-				const tlds = data.documents;
-				tlds.forEach((doc,index)=>{
-					const tld = doc.tld;
-					const watchers = doc.watchers;
-					analyze.push({tld:tld,watchers:(typeof watchers==='string'?[watchers]:watchers).length});
-				});
-				return tlds;
-			})
-			.then(tlds => {
-				const w = analyze.map((o,i) => o.watchers);
-				const max = w.reduce((p, v) => p > v ? p : v);
-				const total = w.reduce((p, v) => p + v);
-				const avg = total / w.length;
-				const top10 = w.sort().reverse().filter((v,i)=>i<=9).filter((v,i)=>v>avg);
-				return { 
-					tlds: tlds,
-					stats: {
-						max: max,
-						total: total,
-						avg: avg,
-						top10: top10	
-					}
-				};
-			})
-			.then(piped => {
-				const tlds = piped.tlds;
-				tlds.forEach((doc,index)=>{
-					const tld = doc.tld;
-					const watchers = doc.watchers;
-					const iWatchers = typeof watchers === 'object' ? watchers.length : 1;
-					document.querySelector(`[data-stdout="tlds"]`).innerHTML += `
-						<div key="${index}" data-key="${index}" data-card="${tld}" id="wrapper-${index}" class="container flex wrapper" onclick="clickMarcoHandler(this.dataset.card)">
-							<div id="card-${index}" class="container card">
-								<div class="wrapper title">
-									<h5 id="title-${index}" class="container title">
-										.<span style="color:${(/\p{Extended_Pictographic}/u).test(tld)?'unset':'darkorange'};">${tld}</span>
-										<span class="show-on-hover" style="position:absolute;top:0;left:0;visibility:collapse;background-color:black;color:inherit;z-index:999;margin:0.1775em 0.625em;max-width: 90%;white-space: pre-wrap;word-break: break-all;">${tld}</span>
-									</h5>
-									<span class="container title">
-										<img src="./img/favicon-32x32.png" alt="Handshake (HNS) logo" width="24" height="24" />
-									</span>
-								</div>
-								<div class="subtext">
-									<div class="watchers">
-										<img class="eye" src="data:image/png;base64,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" width="24" height="24" />
-										<p>${iWatchers}</p>
-									</div>
-									<div id="tags-${index}" class="tags" data-tags="${index}">
-										${piped.stats.top10.filter((v,i)=>i<=1).includes(iWatchers)?'<div class="tag beezkneez"><p>🔥</p></div>':''}
-										${piped.stats.top10.filter((v,i)=>i>1).includes(iWatchers)?'<div class="tag kindahot"><p>😍</p></div>':''}
+			</nav>
+			<main class="sticky">
+				<div class="centerfold">
+					<div class="bg"></div>
+					<div class="drak">
+						<div class="navi">
+							<a href="">Portfolio</a>
+							<a href="">Roadmap</a>
+							<a href="">Projects</a>
+							<a href="">Partners</a>
+						</div>
+						<div class="banner">
+							<img src="img/bg.jpeg" style="position:absolute;width:125%;z-index:-1;">
+							<div class="advertisement wrapper">
+								<div class="container">
+									<div class="figure">
+										<div class="ad" data-ad="0">
+											<h4>HNSCHAT</h4>
+											<p>
+												Some talk about the hnschat/
+												<a href="">link</a>
+											</p>
+											<span class="bg wrapper">
+												<img alt="" src="img/ads/chat.png" />
+											</span>
+										</div>
+										<div class="ad" data-ad="1">
+											<h4>HSHUB</h4>
+											<p>
+												Some talk about hshubio and features 
+												<a href="">link</a>
+											</p>
+											<span class="bg wrapper">
+												<img alt="" src="img/ads/hns.png" />
+											</span>
+										</div>
+										<div class="ad" data-ad="2">
+											<h4>HEY_TX</h4>
+											<p>
+												Get your texas name now! Don't miss out!
+												<a href="">link</a>
+											</p>
+											<span class="bg wrapper">
+												<img alt="" src="img/ads/heytx.png" />
+											</span>
+										</div>
+										<div class="ad" data-ad="3">
+											<h4>.u2br</h4>
+											<p>
+												Support some of our enthusiast and small entrepeneurs! Buy .u2br from dweb0!
+												<a href="">link</a>
+											</p>
+											<span class="bg wrapper">
+												<img alt="" src="img/ads/u2br.png" />
+											</span>
+										</div>
+										<div class="ad" data-ad="4">
+											<h4>.Degen or .Sats?</h4>
+											<p>
+												Are you member of the exclusive degen club? You more a stack'n sats type?
+												<a href="">link</a>
+											</p>
+											<span class="bg wrapper">
+												<img alt="" src="img/ads/degen.webp" />
+											</span>
+										</div>
+										<div class="ad" data-ad="5">
+											<h4>.🦊nft</h4>
+											<p>
+												Get your decentralized domain from the Impervious registry! Start a free and unstoppable gallery! Link your markets! Get your projectname now before they are sold out!
+												<a href="">link</a>
+											</p>
+											<span class="bg wrapper">
+												<img alt="" src="" />
+											</span>
+										</div>
+										<div class="ad" data-ad="6">
+											<h4>Porkbun</h4>
+											<p>
+												A registrar that offers you Handshake domains as wel as ol&apos; fashioned dotComs, email and other dns servives! Come say hi!
+												<a href="">link</a>
+											</p>
+											<span class="bg wrapper">
+												<img alt="" src="img/ads/porkbun.png" />
+											</span>
+										</div>
+										<div class="ad" data-ad="7">
+											<h4>Findwaldo 2.0</h4>
+											<p>
+												Working on a new home for findwaldo! Instead of single day for proof-of-concept, we have taken off with developent and design! Stay tuned!
+												<a href="">link</a>
+											</p>
+											<span class="bg wrapper">
+												<img alt="" src="img/ads/findwaldo.png" />
+											</span>
+										</div>
+										<div class="ad" data-ad="8">
+											<h4>Another Software</h4>
+											<p>
+												Developer team for decentralized apps and tools, building on various blockchains and their ecosystems! Support your community!
+												<a href="">link</a>
+											</p>
+											<span class="bg wrapper">
+												<img alt="" src="img/ads/as.png" />
+											</span>
+										</div>
+										<div class="ad" data-ad="9">
+											<h4>Elymus</h4>
+											<p>
+												A new and decentralized browsing experience! Surf your favorite web3sites and spawn your dApps! Make the web unstoppable!
+												<a href="">link</a>
+											</p>
+											<span class="bg wrapper">
+												<img alt="" src="img/ads/elymus.png" />
+											</span>
+										</div>
+										<div class="ad" data-ad="10">
+											<h4>Impervious</h4>
+											<p>
+												The best what Handshake has to offer, all brought to you with ❤️ by Impervious! And all for free! Support your community!
+												<a href="">link</a>
+											</p>
+											<span class="bg wrapper">
+												<img alt="" src="img/ads/impervious.png" />
+											</span>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					`;
-				});
-			})
-			.catch(err=>{
-				console.log(err);
-			});
+							<form method="post" action="" autocomplete="off">
+								<div class="inputs">
 
-			window.addEventListener("DOMContentLoaded", e => {
-				document.querySelector(`#signin`).addEventListener("click",loginHandler,false);
-				document.querySelector(`#add-tld-watcher`).addEventListener("click",submitHandler,false);
-				const user = localStorage.getItem("findwaldo-username") || null;
-				if (user) {
-					document.querySelector(`#signin`).value = user;
+									<input type="text" id="tld" name="tld" placeholder="Handshake TLD" />
+									<input type="text" id="chatname" name="chatname" placeholder="hnschat.name" />
+								</div>
+								<button type="submit" id="add-tld-watcher">
+									SUBMIT
+								</button>
+							</form>
+						</div>
+						<div class="statistics">
+							<div class="field">
+								<h4>##.#</h4>
+								<span>Metric</span>
+							</div>
+							<div class="field">
+								<h4>##.#</h4>
+								<span>Metric</span>
+							</div>
+							<div class="field">
+								<h4>##.#</h4>
+								<span>Metric</span>
+							</div>
+							<div class="field">
+								<h4>##.#</h4>
+								<span>Metric</span>
+							</div>
+						</div>
+					</span>
+					<div class="watched" data-stdout="tlds">
+						<div class="loading">
+							<div id="chevron"></div>
+						</div>
+					</div>
+				</div>
+			</main>
+		
+		<header class="left-side">
+			<div class="top wrapper">
+				<div class="profile">
+					<span class="picture wrapper">
+						<img width="64" alt="findwaldo profile picture" src="C:\Users\mrsto\git\hns\findwaldo\img\bot-dwebo.png" />
+					</span>
+					<h1 class="title">Findwaldo/</h1>
+					<span class="subtitle">Contact domain owners</span>
+					<span class="subtitle">Hot leads for free</span>
+				</div>
+			</div>
+			<div class="middle wrapper">
+				<div class="info">
+					<div class="list">
+						<div class="field">
+							<span class="key">
+								Item
+							</span>
+							<span class="value">
+								value
+							</span>
+						</div>
+						<div class="field">
+							<span class="key">
+								Item
+							</span>
+							<span class="value">
+								value
+							</span>
+						</div>
+						<div class="field">
+							<span class="key">
+								Item
+							</span>
+							<span class="value">
+								value
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="spacer"></div>
+				<div class="metrics">
+					<div class="subject wrapper">
+						<span class="gauge">
+							<p>--%</p>
+						</span>
+						<span class="title">
+							title
+						</span>
+					</div>
+					<div class="subject wrapper">
+						<span class="gauge">
+							<p>--%</p>
+						</span>
+						<span class="title">
+							title
+						</span>
+					</div>
+					<div class="subject wrapper">
+						<span class="gauge">
+							<p>--%</p>
+						</span>
+						<span class="title">
+							title
+						</span>
+					</div>
+				</div>
+				<div class="spacer"></div>
+				<div class="sliders">
+					<div class="subject wrapper">
+						<div class="field">
+							<span class="key">Key</span>
+							<span class="value">progerss</span>							
+						</div>
+						<progress max="100" value="33">33%</progress>
+					</div>
+					<div class="subject wrapper">
+						<div class="field">
+							<span class="key">Key</span>
+							<span class="value">progerss</span>							
+						</div>
+						<progress max="100" value="33">33%</progress>
+					</div>
+					<div class="subject wrapper">
+						<div class="field">
+							<span class="key">Key</span>
+							<span class="value">progerss</span>							
+						</div>
+						<progress max="100" value="33">33%</progress>
+					</div>
+					<div class="subject wrapper">
+						<div class="field">
+							<span class="key">Key</span>
+							<span class="value">progerss</span>							
+						</div>
+						<progress max="100" value="33">33%</progress>
+					</div>
+					<div class="subject wrapper">
+						<div class="field">
+							<span class="key">Key</span>
+							<span class="value">progerss</span>							
+						</div>
+						<progress max="100" value="33">33%</progress>
+					</div>
+					<div class="subject wrapper">
+						<div class="field">
+							<span class="key">Key</span>
+							<span class="value">progerss</span>							
+						</div>
+						<progress max="100" value="33">33%</progress>
+					</div>
+				</div>
+				<div class="spacer"></div>
+				<div class="hotlinks">
+					<div class="subject wrapper">
+						<div class="field">
+							<span>
+								<img width="15" height="15" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAD6ElEQVRoge2XX2hbdRTHv+d3m6TVOTe6pkn/JluriDpBcCh2nUnAthR1YidS6VQUmRSEPYmCLOp8FHwQ5/RFp3MSkK51dP8aY2VzYw/6MAausbU0afpndS2USZrm3uPLWtv03txfkmKK3M/j+X3POd+TS+49P8DCwsLCwsKieFCxDegR/bbufmbxEYDrthTe8r4ymjTSbrgBfj9W7xUKXQTgvh26zGR/6t7OoRk9vfjvrJkTDTVUCIVO41/zAPAocWpw+Nj2Or2cDfMEot80bGZKRwA8bCCJEWltjZ1j11YGN8QTiPY3OEDpHhibB4BaZvED8+ofvegDcBCCZ9NfM+A31TLKMmNFHyDa6PkEwD4JaYpIdBGBVwaLOsD1454ggDckpBoz9t/z4shA5kHR/sRDJzwHiHFEUn6wsXP0Y70D0wGuhSo2lScFu/ZP3crJYRZGQnUdTPgOgGKmJfDh7fti7xqfZ2G0r97PmtYHQAXjJe+zsZO529Wt2Q/AYaYl0BeevWOvZ9cYN/KSol4BsO12iAG8X98eD+ZieCWx0zU7NQ2DALaYion76srGnyMf0lllesEbvdvuSpY5fgH4gbUZ9HlNyXi3WeFMxsK1OyitXgDBZa6mwbTN1ur1Ge9Ay8rMAAchEs2uHoCezpJ3xm5ffL6iaWbe3AwwebbSqZaICyA0mhpiurpoL9lTv3tsVqb2mtfoxG73mybmAaB1YdEWnhpwVpo1GD6/9W7VJs7JmGdgJGVLtciaB3QGYOIHZRKJ8UhaKJcTg+77jDR/RjylDqW0F8BDEiWnmZQWT/PMhEz/JdYMIAgfEGhYMt/DKi7GIq4nMg84BMWuLZwgYI9EnXliaqv1xf+Q7LvMmgHcvslRNSV2AfhZssZWwXQ2EXZ3LQWYQYly92cg7JXITxFTR1Ug8atkv1XorhK1rfGbfyfvfBLAcck6diZ8NR6uCjKDxiPuwyC8JpGnMbirKpA4J+04g6wfsiUzBLwjX5EvgekxOTF3V/snP5WurddORhSPuF4mpqMA7IU0WwXTe9WBRN4fxSWkl7l4uNJPJL6HzFfUvOnRKv/EgULrADms0zWBqR81RdkFRrTAnr3umYnuAmssk/M6HR+oLhdCPQnmpjy6/bRAZW0yK4J8yTyI9jc4NpXc/BKgF3JIu5q0qc1e39xcPj2NyPtCwwyaPrPlEMCHJOQjpKUfd7bfmsy3nxEF38imT93xKoiOALAZSG4QRFNF+/xQob30WJcr5V+nHC2sIQRgc0b5WY3VgPOZxd/Wo48e63YnnuvBDhXKhwB8AEoBnFdV9W1nR8FvLQsLCwsLi/8v/wA9XT4WGgjQxAAAAABJRU5ErkJggg==" />
+							</span>
+							<a href="">Some cool subject</a>
+						</div>
+						<div class="field">
+							<span>
+								<img width="15" height="15" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAD6ElEQVRoge2XX2hbdRTHv+d3m6TVOTe6pkn/JluriDpBcCh2nUnAthR1YidS6VQUmRSEPYmCLOp8FHwQ5/RFp3MSkK51dP8aY2VzYw/6MAausbU0afpndS2USZrm3uPLWtv03txfkmKK3M/j+X3POd+TS+49P8DCwsLCwsKieFCxDegR/bbufmbxEYDrthTe8r4ymjTSbrgBfj9W7xUKXQTgvh26zGR/6t7OoRk9vfjvrJkTDTVUCIVO41/zAPAocWpw+Nj2Or2cDfMEot80bGZKRwA8bCCJEWltjZ1j11YGN8QTiPY3OEDpHhibB4BaZvED8+ofvegDcBCCZ9NfM+A31TLKMmNFHyDa6PkEwD4JaYpIdBGBVwaLOsD1454ggDckpBoz9t/z4shA5kHR/sRDJzwHiHFEUn6wsXP0Y70D0wGuhSo2lScFu/ZP3crJYRZGQnUdTPgOgGKmJfDh7fti7xqfZ2G0r97PmtYHQAXjJe+zsZO529Wt2Q/AYaYl0BeevWOvZ9cYN/KSol4BsO12iAG8X98eD+ZieCWx0zU7NQ2DALaYion76srGnyMf0lllesEbvdvuSpY5fgH4gbUZ9HlNyXi3WeFMxsK1OyitXgDBZa6mwbTN1ur1Ge9Ay8rMAAchEs2uHoCezpJ3xm5ffL6iaWbe3AwwebbSqZaICyA0mhpiurpoL9lTv3tsVqb2mtfoxG73mybmAaB1YdEWnhpwVpo1GD6/9W7VJs7JmGdgJGVLtciaB3QGYOIHZRKJ8UhaKJcTg+77jDR/RjylDqW0F8BDEiWnmZQWT/PMhEz/JdYMIAgfEGhYMt/DKi7GIq4nMg84BMWuLZwgYI9EnXliaqv1xf+Q7LvMmgHcvslRNSV2AfhZssZWwXQ2EXZ3LQWYQYly92cg7JXITxFTR1Ug8atkv1XorhK1rfGbfyfvfBLAcck6diZ8NR6uCjKDxiPuwyC8JpGnMbirKpA4J+04g6wfsiUzBLwjX5EvgekxOTF3V/snP5WurddORhSPuF4mpqMA7IU0WwXTe9WBRN4fxSWkl7l4uNJPJL6HzFfUvOnRKv/EgULrADms0zWBqR81RdkFRrTAnr3umYnuAmssk/M6HR+oLhdCPQnmpjy6/bRAZW0yK4J8yTyI9jc4NpXc/BKgF3JIu5q0qc1e39xcPj2NyPtCwwyaPrPlEMCHJOQjpKUfd7bfmsy3nxEF38imT93xKoiOALAZSG4QRFNF+/xQob30WJcr5V+nHC2sIQRgc0b5WY3VgPOZxd/Wo48e63YnnuvBDhXKhwB8AEoBnFdV9W1nR8FvLQsLCwsLi/8v/wA9XT4WGgjQxAAAAABJRU5ErkJggg==" />
+							</span>
+							<a href="">And something else</a>
+						</div>
+						<div class="field">
+							<span>
+								<img width="15" height="15" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAD6ElEQVRoge2XX2hbdRTHv+d3m6TVOTe6pkn/JluriDpBcCh2nUnAthR1YidS6VQUmRSEPYmCLOp8FHwQ5/RFp3MSkK51dP8aY2VzYw/6MAausbU0afpndS2USZrm3uPLWtv03txfkmKK3M/j+X3POd+TS+49P8DCwsLCwsKieFCxDegR/bbufmbxEYDrthTe8r4ymjTSbrgBfj9W7xUKXQTgvh26zGR/6t7OoRk9vfjvrJkTDTVUCIVO41/zAPAocWpw+Nj2Or2cDfMEot80bGZKRwA8bCCJEWltjZ1j11YGN8QTiPY3OEDpHhibB4BaZvED8+ofvegDcBCCZ9NfM+A31TLKMmNFHyDa6PkEwD4JaYpIdBGBVwaLOsD1454ggDckpBoz9t/z4shA5kHR/sRDJzwHiHFEUn6wsXP0Y70D0wGuhSo2lScFu/ZP3crJYRZGQnUdTPgOgGKmJfDh7fti7xqfZ2G0r97PmtYHQAXjJe+zsZO529Wt2Q/AYaYl0BeevWOvZ9cYN/KSol4BsO12iAG8X98eD+ZieCWx0zU7NQ2DALaYion76srGnyMf0lllesEbvdvuSpY5fgH4gbUZ9HlNyXi3WeFMxsK1OyitXgDBZa6mwbTN1ur1Ge9Ay8rMAAchEs2uHoCezpJ3xm5ffL6iaWbe3AwwebbSqZaICyA0mhpiurpoL9lTv3tsVqb2mtfoxG73mybmAaB1YdEWnhpwVpo1GD6/9W7VJs7JmGdgJGVLtciaB3QGYOIHZRKJ8UhaKJcTg+77jDR/RjylDqW0F8BDEiWnmZQWT/PMhEz/JdYMIAgfEGhYMt/DKi7GIq4nMg84BMWuLZwgYI9EnXliaqv1xf+Q7LvMmgHcvslRNSV2AfhZssZWwXQ2EXZ3LQWYQYly92cg7JXITxFTR1Ug8atkv1XorhK1rfGbfyfvfBLAcck6diZ8NR6uCjKDxiPuwyC8JpGnMbirKpA4J+04g6wfsiUzBLwjX5EvgekxOTF3V/snP5WurddORhSPuF4mpqMA7IU0WwXTe9WBRN4fxSWkl7l4uNJPJL6HzFfUvOnRKv/EgULrADms0zWBqR81RdkFRrTAnr3umYnuAmssk/M6HR+oLhdCPQnmpjy6/bRAZW0yK4J8yTyI9jc4NpXc/BKgF3JIu5q0qc1e39xcPj2NyPtCwwyaPrPlEMCHJOQjpKUfd7bfmsy3nxEF38imT93xKoiOALAZSG4QRFNF+/xQob30WJcr5V+nHC2sIQRgc0b5WY3VgPOZxd/Wo48e63YnnuvBDhXKhwB8AEoBnFdV9W1nR8FvLQsLCwsLi/8v/wA9XT4WGgjQxAAAAABJRU5ErkJggg==" />
+							</span>
+							<a href="">Yet another subject</a>
+						</div>
+						<div class="field">
+							<span>
+								<img width="15" height="15" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAD6ElEQVRoge2XX2hbdRTHv+d3m6TVOTe6pkn/JluriDpBcCh2nUnAthR1YidS6VQUmRSEPYmCLOp8FHwQ5/RFp3MSkK51dP8aY2VzYw/6MAausbU0afpndS2USZrm3uPLWtv03txfkmKK3M/j+X3POd+TS+49P8DCwsLCwsKieFCxDegR/bbufmbxEYDrthTe8r4ymjTSbrgBfj9W7xUKXQTgvh26zGR/6t7OoRk9vfjvrJkTDTVUCIVO41/zAPAocWpw+Nj2Or2cDfMEot80bGZKRwA8bCCJEWltjZ1j11YGN8QTiPY3OEDpHhibB4BaZvED8+ofvegDcBCCZ9NfM+A31TLKMmNFHyDa6PkEwD4JaYpIdBGBVwaLOsD1454ggDckpBoz9t/z4shA5kHR/sRDJzwHiHFEUn6wsXP0Y70D0wGuhSo2lScFu/ZP3crJYRZGQnUdTPgOgGKmJfDh7fti7xqfZ2G0r97PmtYHQAXjJe+zsZO529Wt2Q/AYaYl0BeevWOvZ9cYN/KSol4BsO12iAG8X98eD+ZieCWx0zU7NQ2DALaYion76srGnyMf0lllesEbvdvuSpY5fgH4gbUZ9HlNyXi3WeFMxsK1OyitXgDBZa6mwbTN1ur1Ge9Ay8rMAAchEs2uHoCezpJ3xm5ffL6iaWbe3AwwebbSqZaICyA0mhpiurpoL9lTv3tsVqb2mtfoxG73mybmAaB1YdEWnhpwVpo1GD6/9W7VJs7JmGdgJGVLtciaB3QGYOIHZRKJ8UhaKJcTg+77jDR/RjylDqW0F8BDEiWnmZQWT/PMhEz/JdYMIAgfEGhYMt/DKi7GIq4nMg84BMWuLZwgYI9EnXliaqv1xf+Q7LvMmgHcvslRNSV2AfhZssZWwXQ2EXZ3LQWYQYly92cg7JXITxFTR1Ug8atkv1XorhK1rfGbfyfvfBLAcck6diZ8NR6uCjKDxiPuwyC8JpGnMbirKpA4J+04g6wfsiUzBLwjX5EvgekxOTF3V/snP5WurddORhSPuF4mpqMA7IU0WwXTe9WBRN4fxSWkl7l4uNJPJL6HzFfUvOnRKv/EgULrADms0zWBqR81RdkFRrTAnr3umYnuAmssk/M6HR+oLhdCPQnmpjy6/bRAZW0yK4J8yTyI9jc4NpXc/BKgF3JIu5q0qc1e39xcPj2NyPtCwwyaPrPlEMCHJOQjpKUfd7bfmsy3nxEF38imT93xKoiOALAZSG4QRFNF+/xQob30WJcr5V+nHC2sIQRgc0b5WY3VgPOZxd/Wo48e63YnnuvBDhXKhwB8AEoBnFdV9W1nR8FvLQsLCwsLi/8v/wA9XT4WGgjQxAAAAABJRU5ErkJggg==" />
+							</span>
+							<a href="">And here again, something else</a>
+						</div>
+						<div class="field">
+							<span>
+								<img width="15" height="15" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAD6ElEQVRoge2XX2hbdRTHv+d3m6TVOTe6pkn/JluriDpBcCh2nUnAthR1YidS6VQUmRSEPYmCLOp8FHwQ5/RFp3MSkK51dP8aY2VzYw/6MAausbU0afpndS2USZrm3uPLWtv03txfkmKK3M/j+X3POd+TS+49P8DCwsLCwsKieFCxDegR/bbufmbxEYDrthTe8r4ymjTSbrgBfj9W7xUKXQTgvh26zGR/6t7OoRk9vfjvrJkTDTVUCIVO41/zAPAocWpw+Nj2Or2cDfMEot80bGZKRwA8bCCJEWltjZ1j11YGN8QTiPY3OEDpHhibB4BaZvED8+ofvegDcBCCZ9NfM+A31TLKMmNFHyDa6PkEwD4JaYpIdBGBVwaLOsD1454ggDckpBoz9t/z4shA5kHR/sRDJzwHiHFEUn6wsXP0Y70D0wGuhSo2lScFu/ZP3crJYRZGQnUdTPgOgGKmJfDh7fti7xqfZ2G0r97PmtYHQAXjJe+zsZO529Wt2Q/AYaYl0BeevWOvZ9cYN/KSol4BsO12iAG8X98eD+ZieCWx0zU7NQ2DALaYion76srGnyMf0lllesEbvdvuSpY5fgH4gbUZ9HlNyXi3WeFMxsK1OyitXgDBZa6mwbTN1ur1Ge9Ay8rMAAchEs2uHoCezpJ3xm5ffL6iaWbe3AwwebbSqZaICyA0mhpiurpoL9lTv3tsVqb2mtfoxG73mybmAaB1YdEWnhpwVpo1GD6/9W7VJs7JmGdgJGVLtciaB3QGYOIHZRKJ8UhaKJcTg+77jDR/RjylDqW0F8BDEiWnmZQWT/PMhEz/JdYMIAgfEGhYMt/DKi7GIq4nMg84BMWuLZwgYI9EnXliaqv1xf+Q7LvMmgHcvslRNSV2AfhZssZWwXQ2EXZ3LQWYQYly92cg7JXITxFTR1Ug8atkv1XorhK1rfGbfyfvfBLAcck6diZ8NR6uCjKDxiPuwyC8JpGnMbirKpA4J+04g6wfsiUzBLwjX5EvgekxOTF3V/snP5WurddORhSPuF4mpqMA7IU0WwXTe9WBRN4fxSWkl7l4uNJPJL6HzFfUvOnRKv/EgULrADms0zWBqR81RdkFRrTAnr3umYnuAmssk/M6HR+oLhdCPQnmpjy6/bRAZW0yK4J8yTyI9jc4NpXc/BKgF3JIu5q0qc1e39xcPj2NyPtCwwyaPrPlEMCHJOQjpKUfd7bfmsy3nxEF38imT93xKoiOALAZSG4QRFNF+/xQob30WJcr5V+nHC2sIQRgc0b5WY3VgPOZxd/Wo48e63YnnuvBDhXKhwB8AEoBnFdV9W1nR8FvLQsLCwsLi/8v/wA9XT4WGgjQxAAAAABJRU5ErkJggg==" />
+							</span>
+							<a href="">a cool subject</a>
+						</div>
+					</div>
+				</div>
+				<div class="spacer"></div>
+				<div class="author">
+					<div class="field">
+						<span>
+							<img width="18" height="18" alt="" src="data:image/png;base64,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">
+						</span>
+						<a href="">Brought to you with ❤️ by Sh1Tt</a>
+					</div>
+				</div>
+				<div class="platforms">
+					<a href="">
+						<img width="18" height="18" alt="twitter" src="data:image/png;base64,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"/>
+					</a>
+					<a href="">
+						<img width="18" height="18" alt="telegram" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAD0UlEQVRoge2Y329TdRjGP+/pWS2iqBGGQ6LGpP5I5pWJ95UbE4JKTEpO2y1saAdbIfE/6C0hZgbcmGit1HU1RRMVRG7M1CsSvYRE3IUalRK2SEJ0Ftqe14utiKOn5/THYTd9Ls/7vM/7Pu37/XEO9NBDDz300AFkvRtohMls9sFgMPiyipQnLOuUiKgT17ybjTWDqspMoRCxlVHgNSAkCtP5j23gE6e8dTdwdHZ2uyGBvdNzhRHgybVxQTc2y18XA8ViMbBUqUQUIwm6G9SpjzKiXzTTuqsGjs3NPSMqexcr1RGQfnAc7To+HY/HrzUj+G4gk8ncXw6FdoMMoewAbWHj0IwbwzcD0/n88zZGsozGgPtaV5CfFxd++taN1VUDU8XiI1Qqe0D2KTwn7iPiDNFMOp223WgdG0in00Z/OPyiYiSpVF8F6etUE7ARyXkhtm1gJp8P1yCuMKLIYx4WZCs4N2FZv3khtmQgm82G/gkGdymSrMEOQPw4ym3hA69cTwaO5/Mv2Cqjy4IFbGq7sxVcBfqbxBe3muZpr2KOBo7kchs3GOYbYrDPVgY7vjUJf6hqcmlh4dyW8FNXgC2NaAofRaPRm15lDafAvQHztAiTKINttLsG8uHNGzcGU/H42c3h8Es4NL9C9T4+0HyEwq0INcTqr56Kx87Cyi1TRE44r3c5n4pZF1sp4fgPYMge4IdWxNY0c+tXrz8JBkOTKI86Zai4n7x3VHEj1E9UQYeADa6KyhUV3Z+Kxz//n06hsFNtPdMk8++a2tsOJRLXXWvcBs9L83gu16+BwIgiB4DHHeRO3dMX2P96NPrn7U/fLRYfqFaqF4DtTvoK2VQ8Nuq1nzo8nwMHhoevAofT8/NvPVwqvWIoE0BkNfyLGJIat6wvG+VWK7W3adI8gLS4eG/ltZNUx7FCYZuoPrQ0MHApHYlUG3E8jA7ApfGY9WyzV0cndHQXOmhZl4HLTvHV0Zlx01Eh007z0GwX6gKqlepRXEYHqPbVarPt1vDNwHShsBMY9kA9MzY0VGq3ji8G0vPzptr6jidym4u3Dl8MbC6Vngae8EAtLQ4MfNVJLV8MqMg1vLwgKCeddi+v8MXA6u70jRvPNjjZaS3fFrEtTLlQvjsYi/3YaR3fDGw1zc+AX50ZrV/cGsE3A9FotIbwnkP4uvnXJsfvna3A14OsZpongPIdAaUwNrZruRs1fDVwKBpdRBt9Wba7Mj7gswEAwZ5a8+DCRCLxfbf0fTcwnkicB/2vYdX3u6nvuwEAW/VN4HfQr5drta4a6KGHHnpYX/wL/dlDd2JMbKsAAAAASUVORK5CYII="/>
+					</a>
+					<a href="">
+						<img width="18" height="18" alt="discord" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAFQUlEQVRoge2YWWxUZRTHf+eb25lpEZEQkBqXKq4PEsFgAiSSosZooj5x05m2mHFJoYsIMUZNNEUfjDHgRmtMHCeklGnmRaKJD24huIBGwC1RiIYEl6gglLWd7R4fKGU6vbPckUKN83+7//Odc/7/+ebeb4EqqqiiiirOA6TSxFgsFjzp9y8E0yjoNSjfqt96rcO2j5eTH41Gpw4Fg10GudFR9oro1rpUanskEhmuRI8nI+sTidpAKnuvCC2K3g4E84bsrkslF5USsz6RqA2kMzuAuXmhYeADFTalLOvdNbY9VK62soz0JBKzSWW6EULAhSWG70RJIswAavJiKZRDiAZB5peocwQ0Tk3N2g7b/qOUxpJGejcN3KXiDFDawEThCGrsjpam94sNKmpkQ9/AfDHONmDKWZXmHceNkVtXhkK7Cw0whQKJRMInxnmT828C4ALHcd5MJBK+QgMKGjmQTncC8yZEVkWQ+QcymbaCUTdyw8aNM8Sq+RmYNmG6KsNhQee0Nzcfzg+4zoix/GuYfCYApiuscguMm5GXYrGL/P7APuCiCZdVGY6kUsmG1ZHIYC45bkb8gcAKJq8JgGn+msCD+eQYI6oqKA+cO00VQnhYVcf8m8YY2bBpYAlwzTmUdLTCvOt6BwYW5hJjjBjRZRUU/dFxpHFmjRUwWXMjsL10iu5y1Jnb0RyeZjLWpcAWr01Fx2od+46I3OWx3jHHyG1draGttm2nVi5v+r4ulVwqwjdFcgYtkTu7Wlq+A1h5v/3bgUvqlwFfe2msyt25z6NGXtu8+XrQK70UE/SVrlDo91wuEokMk5Vnigh4tS0cPpjLdTc2ZkRY66U3cG1PX9/Vpx9GjRjVxR4LkXXMR268BnwfA+oWM6KfuPF+y9rmtb8aa/Q9yflrmZs8F6qRX9z4kcPV3645Pt9vbvxDtn0I9KSX/oIzuoUyZ0jv+ypfNnu5Gx+NRqcCM1ybZ2hw43sSidkgdd4UyOiPP2pEPb4fACpyhxs/FKi7nQL7OBXnTldJqYwrXwKjmg2c2rIDF3utIkpXTzx+WS4Xi8WCYvTZImltrw4MzMklotHoVBUKfiCKoP70wigAb/T11WeM7/fiOe4Q+Bk1XYHkiU+TweC1iqwDlhTLUXS/EVnlg0+zWblBjbMOZEEl/S1hZls4fNACUGMuqKTIKVHMQZz3hoO1ZecIcrkqb2cAjPIvLnNIq04BDhqArM9nVVzpPMMZ0W4ATIqCR8jJDiudPmPEkXRFl2KTAT4NDMGIEXWccUfH/wqSJjUII0Zm1dYOUmBLUQB7MLIYpFvh0FnQc1SF51VYBLrLQ162q7n5GIwYsW07i/Jl2enKvo5Q6POO5tDa2uGhBpA1wFeepAMifCPoE4I2dIbDT3WGw9tR+cmDji9ERCHnuxeLxYIn/P41gjwJlPE5lh0i+sJfe/e+093d7QD09vdfpdAomJuBuYrOAKaP9DkMHFLkO4Oz0/H5tnY2Ne09Xa0nHl+Eo92A624hD0cRnq9LJl8+fc887gN+anG0ngONUOTeaxTKD5bh1vytebl4o6+vPm18WwRuKWN4FuGtNDz9aDj8Z26g4Er0ejw+z3F0HdBYrLKgfe3NzcvLk+2Onv74FtD7Sgz7MOuYxx5pbXI9tBVcCEfuWZeemnIeB72H8TP0q5PJrPYm2wU1vhWkMwuBWXkRB2SLaPbF9paWHcVKlL032NDff4VABKQJ9DKQz8TJdrW3tu6pRHs+ejdvnotKr4MuENgHEreyvljbcnv/2ahfRRVVVFFFFf8L/ANkq8LPfMIewQAAAABJRU5ErkJggg=="/>
+					</a>
+					<a href="">
+						<img width="18" height="18" alt="hnschat" src="img/favicon-32x32.png"/>
+					</a>
+					<a href="">
+						<img width="18" height="18" alt="github" src="data:image/png;base64,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"/>
+					</a>
+				</div>
+			</div>
+		</header>
+		</div>
+		<footer></footer>
+		<script> 
+			const handler = () => {
+				const menu = {
+					btn: document.body.querySelector(`.menu-button`).parentNode,
+					icon: document.body.querySelector(`img`)
 				};
-			},false);
-		})();
-	</script>
-</body>
+				const content = document.body.querySelector(`main`);
+				menu.btn.addEventListener("click", e => {
+					const isOpen = () => menu.btn.classList.contains(`open`);
+					menu.btn.classList.toggle(`open`);
+					menu.icon.src = isOpen() ?
+						"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAYAAADFeBvrAAAABmJLR0QA/wD/AP+gvaeTAAABbUlEQVRoge3ZwU3DQBCF4X+cAhCUAgdoAEELkVIB4k5u5BYKiNMAWSctQBqAZpBSQLycLCHkhI00M2ukfUdrtKPPXo21NpSUlJSUlEDdNNPFen3t3beyWLQOYUZkLm18W65WNxY9DkW0F6xDmIE8/7i0k9jeP0wmH9q9+qIK6sF0cUOpgY5gurigVEB100yJzBNKd7GSu8fx+FOjb19UhkLcV+8RvhJKz6wHhdqWW7xuLqnarcBFQrnZ9lMdCkNAqY/t3Ch1EORFmYAgH8oMBHlQpiDwR5mDwBflAgI/lBsIfFCuILBHuYPAFmVyYv2zabUXOeFmtqNRTK11f0LLEK4isgXOE8pPPm64gqwx4AjywIATyAsDDiBPDBiDvDFgCMqBASNQLgwYgHJiQBmUGwOKoCFgQAk0FAxofTkVuWUAGNDdck8ReTlSYo4B/aFwCOWCAZux/RvlhgG7F2uHcsWYJtdP45KSkpKSf5Vv5dgvzhhotmYAAAAASUVORK5CYII="
+						:
+						"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAAWklEQVRoge3WwQ2AMAwEQQelb6AISkidUASWbEUzFdz9NgKAAuNZ66oekWFGjLN6RIajekAWR7qZEe9dPQIASCLju9kmGh3pRsYDwE5kfDfbRKMj3ch4AP74APyyDUvPAmfrAAAAAElFTkSuQmCC"
+					;
+					content.style.filter = isOpen() ? 
+					`blur(16px)`
+					:
+					`unset`;
+				}, true);
+				
+			};
+			document.addEventListener("DOMContentLoaded", handler, true);
+		</script>
+		<script>
+			(async () =>{
+				const submitHandler = e => {
+					e.preventDefault();
+					const tld = document.querySelector(`#tld`).value;
+					const name = document.querySelector(`#chatname`).value;
+					if(!!tld && tld!=='' && !!name && name!=='') {
+						const domain = tld.replace(".","").replace("/","");
+						const hnsname = name.replace(".","").replace("/","");
+						fetch(`https://donna.hsd.services/findwaldo/v1/add/${domain}/${hnsname}`,{
+							method: "GET",
+							headers: {
+								"Content-Type": "application/json",
+								"x-api-key": "Sxh90-8s00Y-D98dy-9jdpd"
+							}
+						})
+						.then(res=>res.json())
+						.then(data=>{
+							console.log(data);
+							location.reload();
+						})
+						.catch(err=>{
+							console.log(err);
+						});
+					};
+				};
+	
+				const loginHandler = e => {
+					const user = localStorage.getItem("findwaldo-username");
+					if (user) {
+						localStorage.removeItem("findwaldo-username");
+						location.reload();
+						return;
+					};
+					const p = window.location.href;
+					const host = p.slice(0, p.lastIndexOf("/"));
+					window.location.href = `${host}/login.html`;
+				};
+	
+				let analyze = [];
+				
+				const stdout = document.body.querySelector(`[data-stdout="tlds"]`);
+
+				const data = fetch("https://donna.hsd.services/findwaldo/v1/list?x-api-key=Sxh90-8s00Y-D98dy-9jdpd")
+				.then(res=>res.json())
+				.then(data=>{
+					const tlds = data.documents;
+					tlds.forEach((doc,index)=>{
+						const tld = doc.tld;
+						const watchers = doc.watchers;
+						analyze.push({tld:tld,watchers:(typeof watchers==='string'?[watchers]:watchers).length});
+					});
+					return tlds;
+				})
+				.then(tlds => {
+					const w = analyze.map((o,i) => o.watchers);
+					const max = w.reduce((p, v) => p > v ? p : v);
+					const total = w.reduce((p, v) => p + v);
+					const avg = total / w.length;
+					const top10 = w.sort().reverse().filter((v,i)=>i<=9).filter((v,i)=>v>avg);
+					return { 
+						tlds: tlds,
+						stats: {
+							max: max,
+							total: total,
+							avg: avg,
+							top10: top10	
+						}
+					};
+				})
+				.then(piped => {
+					const tlds = piped.tlds;
+					stdout.innerHTML = ``;
+					tlds.forEach((doc,index)=>{
+						const tld = doc.tld;
+						const watchers = doc.watchers;
+						const iWatchers = typeof watchers === 'object' ? watchers.length : 1;
+						stdout.innerHTML += `
+							<div key="${index}" id="wrapper-${index}" class="container flex wrapper">
+								<div id="card-${index}" class="container card">
+									<div class="title">
+										<h4 id="title-${index}" class="container title">
+											.<span style="color:${(/\p{Extended_Pictographic}/u).test(tld)?'unset':'var(--theme-color)'};">${tld}</span>
+											<span class="show-on-hover" style="position:absolute;top:0;left:0;visibility:collapse;background-color:black;color:inherit;z-index:999;margin:0.1775em 0.625em;max-width: 90%;white-space: pre-wrap;word-break: break-all;">${tld}</span>
+										</h4>
+										<span class="container title">
+											<img src="./img/favicon-32x32.png" alt="Handshake (HNS) logo" width="24" height="24" />
+										</span>
+									</div>
+									<div class="subtext">
+										<div class="watchers">
+											<img class="eye" src="data:image/png;base64,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" width="24" height="24" />
+											<p>${iWatchers}</p>
+										</div>
+										<div class="tags" id="tags-${index}" data-tags="${index}">
+											${piped.stats.top10.filter((v,i)=>i<=1).includes(iWatchers)?'<div class="tag beezkneez"><p>🔥</p></div>':''}
+											${piped.stats.top10.filter((v,i)=>i>1).includes(iWatchers)?'<div class="tag kindahot"><p>😍</p></div>':''}
+										</div>
+									</div>
+								</div>
+							</div>
+						`;
+					});
+				})
+				.catch(err=>{
+					console.log(err);
+				});
+	
+				window.addEventListener("DOMContentLoaded", e => {
+					document.querySelector(`#signin`).addEventListener("click",loginHandler,false);
+					document.querySelector(`#add-tld-watcher`).addEventListener("click",submitHandler,false);
+					const user = localStorage.getItem("findwaldo-username") || null;
+					if (user) {
+						document.querySelector(`#signin`).value = user;
+					};
+				},false);
+			})();
+		</script>
+	</body>
 </html>
