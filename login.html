@@ -7,55 +7,14 @@
 	<link rel="stylesheet" href="globals.css" />
 </head>
 <body>
-	<nav>
-		<div class="wrapper flex">
-			<h2>findwaldo/</h2>
-		</div>
-		<div class="wrapper menu flex">
-			<div class="wrap flex item">
-				<a href="">
-					home
-				</a>
-			</div>
-			<div class="wrap flex item">
-				<a href="">
-					about
-				</a>
-			</div>
-			<div class="wrap flex item">
-				<a href="">
-					bots
-				</a>
-			</div>
-			<div class="wrap flex item">
-				<a href="">
-					my listing
-				</a>
-			</div>
-			<div class="wrap flex item">
-				<a href="">
-					news
-				</a>
-			</div>
-			<div class="wrap flex item">
-				<input type="button" id="signin" name-="signin" class="interactive login" value="Handshake Signin" />
-			</div>
-		</div>
-	</nav>
-	<header class="">
-
-	</header>
-	<main>
-		<form action="" type="post" autocomplete="off">
-			<input type="text" id="hnsname" name="hnsname" placeholder="Handshakename" />
-			<button type="submit" id="checkrecord">
-				Login
-			</button>
-		</form>
-		<div data-stdout="hash"></div>
-	</main>
-	<aside></aside>
-	<footer></footer>
+	<span id="rollback">< back</span>
+	<form action="" type="post" autocomplete="off">
+		<input type="text" id="hnsname" name="hnsname" placeholder="Handshakename" />
+		<button type="submit" id="checkrecord">
+			Login
+		</button>
+	</form>
+	<div data-stdout="hash"></div>
 	<script>
 		const base64 = {
 			_keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
@@ -226,11 +185,15 @@
 				};
 			});
 		};
+		const prevHandler = () => {
+			history.back();
+		};
 
 		// runtime
 		(async () =>{
 			window.addEventListener("DOMContentLoaded",e => {
-				document.querySelector(`#checkrecord`).addEventListener("click",submitHandler,false);
+				document.querySelector(`#checkrecord`).addEventListener("click", submitHandler, false);
+				document.querySelector(`#rollback`).addEventListener("click", prevHandler, false);
 			}, false);
 		})();
 	</script>
