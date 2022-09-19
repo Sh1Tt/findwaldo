@@ -8,10 +8,10 @@
 	--bg-menubar-100: rgba(31,32,41,1);
 	--bg-menubar-bottom-100: rgba(35,36,46,1);
 
-	--response-pad: 2.5em;
-	--response-home-pad: 2.5em 1.25em;
+	--response-pad: 1.25em;
+	--response-home-pad: 2.5em 0.625em;
 
-	--profile-width: 386;
+	--profile-width: 316;
 
 	--theme-color: goldenrod;
 }
@@ -45,7 +45,7 @@ select:-webkit-autofill {
 /*Custom ScrollBar*/
   /* width & round */
   ::-webkit-scrollbar, iframe::-webkit-scrollbar {
-    width: 6px;
+    width: 0px;
     border-radius: 50%;
   }
 
@@ -61,7 +61,8 @@ select:-webkit-autofill {
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover, iframe::-webkit-scrollbar-thumb:hover {
-    background: rgb(201, 181, 6);
+    background: var(--theme-color);
+	opacity: .25;
   }
 
 div.loading {

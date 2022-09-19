@@ -66,16 +66,25 @@
 				justify-content: flex-start;
 				align-items: center;
 				background-color: var(--bg-menubar-100);
+				color: rgba(236,241,254,0.75);
 			}
 
-				nav.right-side div.content.wrapper span {
+				nav.right-side div.content.wrapper span.home.link {
 					transform: rotate(90deg);
 					padding: var(--response-home-pad);
+					display: flex;
+				}
+			
+				nav.right-side div.content.wrapper div.menu.wrapper {
+					display: none;
+				}
+				
+				nav.right-side div.content.wrapper div.menu.wrapper div.container {
+					display: flex;
+					flex-direction: column;
 				}
 
-				nav.right-side div.content.wrapper span a {
-					color: rgba(238,243,244,1);
-				}
+			
 
 
 			nav.right-side div.footer.wrapper {
@@ -119,7 +128,7 @@
 			}
 			main.sticky div.centerfold div.drak {
 				margin: 1em 2em;
-				width: calc((100vw) - (var(--profile-width) * 1px) - 18px - (2 * 2em ) - (2 * 2.25rem));
+				width: calc((100vw) - (var(--profile-width) * 1px) - 18px - (2 * 2em ) - (2 * var(--response-pad)));
 				aspect-ratio: 2.5;
 				height: 100%;
 				display: flex;
@@ -130,20 +139,22 @@
 				margin: 2.5%;
 			}
 			main.sticky div.centerfold div.drak div.navi a {
-				padding: 1.25em 2.5em;
+				padding: 0.625em 1.25em;
 			}
 			main.sticky div.centerfold div.drak div.banner {
-				flex: 0 0 480px;
+				flex: 0 0 400px;
 				margin: 5% 2.5%;
 				overflow: clip;
+				display: flex;
+				flex-direction: row-reverse;
+				justify-content: space-between;
+				flex-wrap: wrap;
 			}
 			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper {
-				position: absolute;
-				top: 0;
-				right: 6.25%;
-				width: 512px;
+				width: 386px;
 				background: rgba(13,14,21,1);
-				height: 286px;
+				height: 224px;
+				margin: 0 2.25em;
 			}
 			main.sticky div.centerfold div.drak div.banner div.advertisement.wrapper div.container {
 				position: relative;
@@ -269,21 +280,26 @@
 			}
 			main.sticky div.centerfold div.drak div.banner form div.inputs {
 				display: flex;
-				padding: 2.5em 1.25em;
+				padding: 1.25em 0.625em;
 				background: var(--bg-main-100);
-				font-size: 18px;
+				font-size: 14px;
 			}
 			main.sticky div.centerfold div.drak div.banner form div.inputs input {
-				padding: 0.75em 1.5em;
+				padding: 0.375em 0.75em;
 				margin: 0 1.25em;
+				outline: 0;
+			}
+			main.sticky div.centerfold div.drak div.banner form div.inputs input:active {
+				outline: 0;
+				border: 0px solid transparen;
 			}
 
 
 			main.sticky div.centerfold div.drak div.banner form button {
-				margin: 7.5em 2.5em;
-				padding: 1.25em 2.5em;
+				margin: 3.75em 1.25em;
+				padding: 0.625em 1.25em;
 				background: goldenrod;
-				font-size: 19px;
+				font-size: 15px;
 				font-weight: 800;
 				color: rgba(236,241,254,.5);
 				border: 1px solid rgba(164,255,42,0.55);
@@ -298,7 +314,7 @@
 				display: flex;
 				justify-content: space-between;
 				padding: var(--response-pad);
-				margin: 1.5em 0;
+				margin: 1.5em 0.75em;
 				align-items: center;
 			}
 			main.sticky div.centerfold div.drak div.statistics div.field {
@@ -308,11 +324,11 @@
 			}
 			main.sticky div.centerfold div.drak div.statistics div.field h4 {
 				color: goldenrod;
-				margin: 0 2.5em;
+				margin: 0 0.625em;
 			}
 			main.sticky div.centerfold div.drak div.statistics div.field span {
 				color: rgba(238,243,254,1);
-				margin: 0 2.5em;
+				margin: 0 1.25em;
 			}
 			main.sticky div.centerfold div.drak div.watched {
 				display: flex;
@@ -320,17 +336,17 @@
 				justify-content: flex-start;
 				align-items: center;
 				flex-wrap: wrap;
-				margin: 0 2.5em;
+				margin: 0 1.25em;
 			}
 			main.sticky div.centerfold div.drak div.watched div.wrapper div.container.card {
 				background: var(--bg-hilite-100);
 				color:rgba(238,243,254,.5);
-				min-width: 296px;
-				margin: 0.75em 1.5rem 0.75em 1.75rem;
-				max-width: 336px;
+				min-width: 256px;
+				margin: 0.75em 0.375em;
+				max-width: 286px;
 				overflow: clip;
-				min-height: 200px;
-				max-height: 214px;
+				min-height: 178px;
+				max-height: 196px;
 				padding: 0.375em;
 				display: flex;
 				flex-direction: column;
@@ -347,7 +363,7 @@
 				max-width: 100%;
 			}
 			main.sticky div.centerfold div.drak div.watched div.wrapper div.container.card div.title h4 {
-				max-width: 248px;
+				max-width: 198px;
 				text-overflow: ellipsis;
 				display: flex;
 				font-size: 15pt;
@@ -367,6 +383,9 @@
 			}
 			.flex {
 				flex: 1 1;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			}
 
 		</style>
@@ -439,13 +458,8 @@
 
 			}
 			header.left-side div.middle.wrapper {
-				display: flex;
-				flex-direction: column;
-				justify-content: space-around;
-				align-items: center;
-				overflow: scroll;
-				padding-top: 57.5%;
-				transform: scaleY(1.025) translateY(0.75em);
+				overflow-y: scroll;
+				overflow-x: clip;
 			}
 
 			header.left-side div.middle.wrapper div.info {
@@ -494,7 +508,7 @@
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
-				margin: 0.5em;
+				margin: 0.375em 0.75em;
 			}
 			
 			header.left-side div.middle.wrapper div.metrics div.subject.wrapper span.gauge {
@@ -502,7 +516,7 @@
 				justify-content: center;
 				align-items: center;
 				border-radius: 50%;
-				padding: 1em;
+				padding: .75em;
 				background: var(--bg-second-100);
 				color:rgba(238,243,254,.5);
 				aspect-ratio: 1;
@@ -612,6 +626,13 @@
 				margin: 0 1em;
 			}
 
+			header.left-side div.middle.wrapper div.author div.field a {
+				margin: 0.375em 0.75em;
+				font-size: 9pt;
+				filter: brightness(2.5);
+				text-decoration: underline 1px currentColor;
+			}
+
 			header.left-side div.middle.wrapper div.platforms {
 				width: 100%;
 				display: flex;
@@ -631,11 +652,35 @@
 					</span>
 				</div>
 				<div class="content wrapper">
-					<span>
+					<span class="home link">
 						<a href="">
 							HOME
 						</a>
 					</span>
+					<div class="menu wrapper">
+						<div class=""container>
+							<div>
+								<a href="">Home</a>
+							</div>
+							<div>
+								<a href="">Docs</a>
+								<div>
+									<a href="">API</a>
+									<a href="">Twitter</a>
+									<a href="">Hnschat</a>
+								</div>
+							</div>
+							<div>
+								<a href="">Profile</a>
+							</div>
+							<div>
+								<a href="">Link</a>
+							</div>
+							<div>
+								<a href="">Contact</a>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="footer wrapper">
 					<span class="option">
@@ -844,6 +889,7 @@
 				</div>
 			</div>
 			<div class="middle wrapper">
+				<!-- <div class="scroller"> -->
 				<div class="info">
 					<div class="list">
 						<div class="field">
@@ -1005,6 +1051,7 @@
 						<img width="18" height="18" alt="github" src="data:image/png;base64,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"/>
 					</a>
 				</div>
+			<!-- </div> -->
 			</div>
 		</header>
 		</div>
