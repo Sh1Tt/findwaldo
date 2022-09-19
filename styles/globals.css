@@ -22,8 +22,8 @@
 }
 @media screen and (max-width: 678px) {
 	:root {
-		--response-pad: 1.75em;
-		--response-home-pad: 1.75em 0.875em;
+		--response-pad: 1.5em;
+		--response-home-pad: 1.5em 0.75em;
 	}	
 }
 @media screen and (max-width: 320px) {

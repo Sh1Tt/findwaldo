@@ -134,6 +134,11 @@
 				display: flex;
 				flex-direction: column;
 			}
+			@media media and (max-width: 324px) {
+				main.sticky div.centerfold div.drak {
+					margin: 0.75em 0.125em;
+				}
+			}
 			main.sticky div.centerfold div.drak div.navi {
 				color: rgba(238,243,254,1);
 				margin: 2.5%;
@@ -318,6 +323,7 @@
 				padding: var(--response-pad);
 				margin: 1.5em 0.75em;
 				align-items: center;
+				flex-wrap: wrap;
 			}
 			main.sticky div.centerfold div.drak div.statistics div.field {
 				flex: 1 1;
@@ -392,6 +398,7 @@
 
 			main.sticky div.centerfold div.drak div.reviews div.showcase {
 				display: flex;
+				flex-wrap: wrap;
 			}
 
 			main.sticky div.centerfold div.drak div.reviews div.showcase div.card {
