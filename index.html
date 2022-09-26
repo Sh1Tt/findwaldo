@@ -7,10 +7,10 @@
 		<title>Findwaldo/ | For buyers and sellers</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-		<link rel="manifest" href="/site.webmanifest">
+		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+		<!-- <link rel="manifest" href="site.webmanifest"> -->
 		<link rel="stylesheet" href="styles/reset.css">
 		<link rel="stylesheet" href="styles/globals.css">
 		<style>
@@ -29,6 +29,7 @@
 				display: flex;
 				flex-direction: row-reverse;
 				min-width: 100%;
+				transition: .4s;
 			}
 
 			nav.right-side {
@@ -53,14 +54,16 @@
 				justify-content: flex-start;
 				align-items: flex-start;
 				background-color: var(--bg-menubar-top-100);
+				max-width: 99vw;
+				transition: .4s ease-in-out;
+				width: 64px;
 			}
 			
 				nav.right-side div.top.wrapper span {
 					padding: var(--response-pad);
 				}
 				.open {
-					min-width: 386px;
-					max-width: 99vw;
+					width: 386px !important;
 				}
 			
 			nav.right-side div.content.wrapper {
@@ -118,7 +121,6 @@
 				justify-content: flex-start;
 				align-items: stretch;
 				height: 100%;
-				width: 100%;
     			margin-left: calc(var(--profile-width) * 1px);
 			}
 
@@ -138,7 +140,7 @@
 				display: flex;
 				flex-direction: column;
 			}
-			@media media and (max-width: 324px) {
+			@media and (max-width: 324px) {
 				main.sticky div.centerfold div.drak {
 					margin: 0.75em 0.125em;
 				}
@@ -146,9 +148,21 @@
 			main.sticky div.centerfold div.drak div.navi {
 				color: rgba(238,243,254,1);
 				margin: 2.5%;
+				display: flex;
+				flex-wrap: wrap	;
 			}
+			main.sticky div.centerfold div.drak div.navi div#toggle-profile {	
+				display: none;
+				justify-content: flex-start;
+				align-items: center;
+				margin-right: 12.5%;
+			}
+
 			main.sticky div.centerfold div.drak div.navi a {
 				padding: 0.625em 1.25em;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			}
 			main.sticky div.centerfold div.drak div.banner {
 				flex: 0 0 400px;
@@ -292,6 +306,7 @@
 				padding: 1.25em 0.625em;
 				background: var(--bg-main-100);
 				font-size: 14px;
+				color: rgba(236,241,254,0.75);
 			}
 			main.sticky div.centerfold div.drak div.banner form div.inputs input {
 				padding: 0.375em 0.75em;
@@ -410,11 +425,23 @@
 				background: var(--bg-hilite-100);
 				padding: 1.25em 2.5em;
 			}
+			@media screen and (max-width: 1400px) {
+				main.sticky div.centerfold div.drak div.navi div#toggle-profile {
+					display: flex;
+				}				
+			}
+			@media screen and (max-width: 678px) {
+				main.sticky div.centerfold div.drak div.navi a {
+					display: none;
+				}
+			}
+
+			
+			
 		</style>
 		<style>
 			header.left-side {
 				height: 100%;
-				width: calc(var(--profile-width) * 1px);
 				display: flex;
 				flex-direction: column;
 				align-items: stretch;
@@ -425,6 +452,7 @@
 				left: 0;
 				background: var(--bg-second-100);
 				overflow: hidden;
+				max-width: calc((100vw) - 68px);
 			}
 
 			header.left-side div.top.wrapper {
@@ -667,6 +695,7 @@
 		</style>
 	</head>
 	<body>
+		<input type="hidden" name="domain" id="domain" data-stdin="user" />
 		<div id="slide-frame">
 			<nav class="right-side">
 				<div class="top wrapper">
@@ -682,24 +711,24 @@
 					</span>
 					<div class="menu wrapper">
 						<div class=""container>
-							<div>
+							<div class="option">
 								<a href="">Home</a>
 							</div>
-							<div>
+							<div class="option">
 								<a href="">Docs</a>
-								<div>
+								<div class="sublist">
 									<a href="">API</a>
 									<a href="">Twitter</a>
 									<a href="">Hnschat</a>
 								</div>
 							</div>
-							<div>
+							<div class="option">
 								<a href="">Profile</a>
 							</div>
-							<div>
+							<div class="option">
 								<a href="">Link</a>
 							</div>
-							<div>
+							<div class="option">
 								<a href="">Contact</a>
 							</div>
 						</div>
@@ -714,15 +743,40 @@
 					</span>
 				</div>
 			</nav>
-			<main class="sticky">
+			<main class="sticky" style="width: 100%;">
 				<div class="centerfold">
 					<div class="bg"></div>
 					<div class="drak">
 						<div class="navi">
+							<div id="toggle-profile" style="
+								margin-left: 0;
+							">
+								<img height="32" width="32" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAADlklEQVR4nO3aP28cRRgG8OeducSyY/sabMdhFxyFIkDEV4AmihRMUqdOBLKFQklDYUoaikRCJJbpQk2sKASRLxFS0ABBd+esHShyPucM1s28FFzQ7sb754508/y6nZ33nnc9t+vV7gFERERERERERERERERERERERERERERERERERERERJQl4xR1Ov3IW3dRoMsQLAGIh7vaEDxSL3eMs5tRNNV5ea2GkT/SgiRJb24g+AzQVQCNiukeiluuYT9dmjuWjNpYqPm1F6SzvbuswC0As3VrhnaheilebN4dsS7IfFNnUivprSrw3RjNAMAsRDZbO72VMWqDy69ckM727rKIXgdgc7seAHrVeXnrCPrTR9Cf9ipvA/oJgJ9yc62oXm8n3fP1jiHc/NJLVuuPZyfEuZ+R/Wb8BeBqtDCzISL+sDpVNVtP9q6o6jUAE6ld3YExp0/OT29XNRZqfukZIs6t5ZtRL+fi47PrRc0AgIj4aGHmJlTOAfg7tatpvV8ryww9v/AM6XT6kTYGj5C9m/gwPj67Xn4YWa2d3oqofpUaGqDRWIpfmdoqqws1v/AM8dZdzDXzIFqY2RilGQCI56dvAHiYGmqocxeq6kLNL1wQMfp+dkQLr5ll/q3RzIGI5j+b+c8V/w/xOJXedN7cH7WZ/z5KzY+5oVOHTmR+yYIITqQ3pxr77XEbmrT7rdxQVFkUaH7ZXZaO20Be19p8Tp1TP8j8sjPkcXqzP5iMi6ZWOXpwNF/7+NCJzC9ZEMWv6U1r/NlxG7LyQu0vlUWB5hcuiKrkHobJZVWt9ewr+zlqFXI5Myb5z2b+c4UBxtnbAAapoXe2nuxdGbWh9vbeRwDOpIYGMOZ2VV2o+YULMny58k16TFWvtZPeu7WbSXrvieiX6TFRXX9t7ljlNTzU/NJT0Fm7BqCbGpqA6A+tnd5K2emrqqaV9FYheg/Zh2tPD4z9vPwwws6vfEHVTrrnIbKJFx8/PwR0w6u5PyHPfjfGyL6bfN2KPzu8Zp7JzXdQ/SBebH5flRlyfq03hsMHZIe9E6jLicjH0cLM1+MUh5Rf+xXu8JvyLYDmiM08hdFL8Xzz3oh1QebXvo2LF5t3rccbEHwB4KBGyQDAzYExb/7fP0ZI+WP9DKj9Z/9Vde6CqC4rcFKGP4NRoC3AbyJyxxuzWeduhvlERERERERERERERERERERERERERERERERERERERFTuHz17O85/I7dEAAAAAElFTkSuQmCC" />
+							</div>
 							<a href="">Portfolio</a>
 							<a href="">Roadmap</a>
 							<a href="">Projects</a>
 							<a href="">Partners</a>
+							<form id="search-tld" action="/search" method="post" style="
+								flex: 1 1;
+								display: flex;
+								justify-content: flex-end;
+								align-items: center;
+								margin: 0 2.5%;
+							">
+								<div>
+									<input type="text" id="search" name="search" placeholder="Search domain.." />
+									<span style="
+										position: absolute;
+										top: 0;
+										right: 0;
+
+									">
+										<img width="18" height="18" alt="search button icon" src="data:image/png;base64,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" />
+										<button type="submit" id="searchbtn" name="searchbtn" value="🔎" />
+									</span>
+								</div>
+							</form>
 						</div>
 						<div class="banner">
 							<img src="img/bg.jpeg" style="position:absolute;width:125%;z-index:-1;">
@@ -983,7 +1037,7 @@
 				</div>
 			</main>
 		
-		<header class="left-side">
+		<header class="left-side" style="width: calc(var(--profile-width) * 1px);">
 			<div class="top wrapper">
 				<div class="profile">
 					<span class="picture wrapper">
@@ -1225,6 +1279,14 @@
 					window.location.href = `${host}/login.html`;
 				};
 	
+				const profileHandler = e => {
+					const getTarget = target => target.id !== `toggle-profile` ? getTarget(target.parentNode) : target;
+					const profile = document.body.querySelector(`header`);
+					const btn = getTarget(e.target);
+					btn.style.marginLeft = profile.style.width === 'calc(var(--profile-width) * 1px)' ? '386px' : '0';
+					profile.style.width = profile.style.width === 'calc(var(--profile-width) * 1px)' ? '386px' : 'calc(var(--profile-width) * 1px)' ;
+				};
+
 				let analyze = [];
 				
 				const stdout = document.body.querySelector(`[data-stdout="tlds"]`);
@@ -1293,10 +1355,17 @@
 				.catch(err=>{
 					console.log(err);
 				});
+
+
 	
 				window.addEventListener("DOMContentLoaded", e => {
-					document.querySelector(`#signin`).addEventListener("click",loginHandler,false);
-					document.querySelector(`#add-tld-watcher`).addEventListener("click",submitHandler,false);
+					document.querySelector(`#signin`).addEventListener("click",loginHandler);
+					document.querySelector(`#add-tld-watcher`).addEventListener("click",submitHandler);
+					document.querySelector(`#toggle-profile`).addEventListener("click",e => profileHandler(e));
+					const input = document.querySelector(`[data-stdin="user"]`);
+					input.addEventListener("change", e => {
+						console.log(input.value);
+					}, true);
 					const user = localStorage.getItem("findwaldo-username") || null;
 					if (user) {
 						document.querySelector(`#signin`).value = user;
