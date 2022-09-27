@@ -1283,8 +1283,8 @@
 					const getTarget = target => target.id !== `toggle-profile` ? getTarget(target.parentNode) : target;
 					const profile = document.body.querySelector(`header`);
 					const btn = getTarget(e.target);
-					btn.style.marginLeft = profile.style.width === 'calc(var(--profile-width) * 1px)' ? '386px' : '0';
-					profile.style.width = profile.style.width === 'calc(var(--profile-width) * 1px)' ? '386px' : 'calc(var(--profile-width) * 1px)' ;
+					btn.style.marginLeft = profile.style.width === 'calc(var(--profile-width) * 1px)' ? '316px' : '0';
+					profile.style.width = profile.style.width === 'calc(var(--profile-width) * 1px)' ? '316px' : 'calc(var(--profile-width) * 1px)' ;
 				};
 
 				let analyze = [];
